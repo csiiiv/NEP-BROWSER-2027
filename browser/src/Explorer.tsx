@@ -975,7 +975,7 @@ export default function Explorer() {
             {showHeaderExtra ? "Less" : "Details"}
           </Button>
           <span className="ml-auto hidden text-[10px] text-muted-foreground lg:inline">
-            DBM NEP · not an official government product
+            DBM NEP · not official · AI-assisted — verify before citing
           </span>
         </div>
 

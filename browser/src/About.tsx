@@ -101,6 +101,17 @@ export default function About() {
                 <strong>not</strong> an official government product and may lag publications or
                 introduce transform/display errors.
               </p>
+              <p className="text-muted-foreground">
+                <strong className="text-foreground">AI-assisted analysis.</strong> The figures,
+                hierarchy, and structures on this site were parsed, aggregated, and drafted by AI
+                agents with human oversight. The dataset and its interpretations may contain
+                errors, mis-classifications, or stale figures — always verify against the official
+                documents and sources before citing. Report errors or discrepancies via{" "}
+                <ExtLink href="https://github.com/csiiiv/NEP-BROWSER-2027/issues">
+                  GitHub Issues
+                </ExtLink>
+                ; they may be patched in a later release.
+              </p>
             </section>
 
             <Separator />

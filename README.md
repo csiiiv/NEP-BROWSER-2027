@@ -23,6 +23,13 @@ lag publications and can contain transform/display errors.
 **Disclaimer:** Not an official government product. For research and civic
 transparency only—not a substitute for the NEP, GAA, or DBM/BESF publications.
 
+**AI-assisted analysis.** The figures, hierarchy, and structures on this site were
+parsed, aggregated, and drafted by AI agents with human oversight. The dataset and
+its interpretations may contain errors, mis-classifications, or stale figures —
+always verify against the official documents and sources before citing. Report
+errors or discrepancies via [GitHub Issues](https://github.com/csiiiv/NEP-BROWSER-2027/issues);
+they may be patched in a later release.
+
 ## Layout
 
 ```
