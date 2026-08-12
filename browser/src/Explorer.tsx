@@ -78,7 +78,7 @@ import {
 
 const DEFAULT_EXPANDED = ["section:automatic", "section:programmed"] as const;
 const ITEMS_CAP = 5000;
-const ITEM_COLS_STORAGE_KEY = "nep-item-cols-v2";
+const ITEM_COLS_STORAGE_KEY = "nep-item-cols-v3";
 
 type TreeSort = "amount" | "name";
 type ItemColId =
@@ -109,12 +109,12 @@ const ITEM_COLUMNS: {
   header: string;
   defaultOn: boolean;
 }[] = [
+  { id: "object", label: "Expense object", header: "Expense object", defaultOn: true },
+  { id: "amount", label: "Amount", header: "Amount", defaultOn: true },
+  { id: "prog", label: "Program / PAP", header: "PROG", defaultOn: true },
   { id: "region", label: "Region", header: "REGION", defaultOn: true },
   { id: "div", label: "Division", header: "DIV", defaultOn: true },
   { id: "ou", label: "Operating unit", header: "OU", defaultOn: true },
-  { id: "prog", label: "Program / PAP", header: "PROG", defaultOn: true },
-  { id: "amount", label: "Amount", header: "Amount", defaultOn: true },
-  { id: "object", label: "Expense object", header: "Expense object", defaultOn: true },
   { id: "funding", label: "Funding", header: "Funding", defaultOn: true },
   { id: "object_code", label: "Object code", header: "Object code", defaultOn: true },
   { id: "id", label: "Record ID", header: "ID", defaultOn: true },
