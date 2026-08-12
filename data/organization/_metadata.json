@@ -1,0 +1,12 @@
+[
+  {
+    "entity": "organization",
+    "total_departments": 37,
+    "total_agencies": 421,
+    "total_operating_unit_classes": 21,
+    "total_operating_units": 13010,
+    "total_organizations": 13010,
+    "source": "derived from NEP-FY2027",
+    "conversion_date": "2026-08-12T23:56:51.871370"
+  }
+]

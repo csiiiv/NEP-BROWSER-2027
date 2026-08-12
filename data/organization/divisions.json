@@ -1,0 +1,1107 @@
+[
+  {
+    "code": "0801001",
+    "description": "Division of Ilocos Norte",
+    "status": "Active"
+  },
+  {
+    "code": "0801002",
+    "description": "Division of Ilocos Sur",
+    "status": "Active"
+  },
+  {
+    "code": "0801003",
+    "description": "Division of La Union",
+    "status": "Active"
+  },
+  {
+    "code": "0801004",
+    "description": "Division of Pangasinan I",
+    "status": "Active"
+  },
+  {
+    "code": "0801005",
+    "description": "Division of Pangasinan II",
+    "status": "Active"
+  },
+  {
+    "code": "0801006",
+    "description": "Division of Alaminos City",
+    "status": "Active"
+  },
+  {
+    "code": "0801007",
+    "description": "Division of Batac City",
+    "status": "Active"
+  },
+  {
+    "code": "0801008",
+    "description": "Division of Candon City",
+    "status": "Active"
+  },
+  {
+    "code": "0801009",
+    "description": "Division of Dagupan City",
+    "status": "Active"
+  },
+  {
+    "code": "0801010",
+    "description": "Division of Laoag City",
+    "status": "Active"
+  },
+  {
+    "code": "0801011",
+    "description": "Division of San Carlos City",
+    "status": "Active"
+  },
+  {
+    "code": "0801012",
+    "description": "Division of San Fernando City",
+    "status": "Active"
+  },
+  {
+    "code": "0801013",
+    "description": "Division of Urdaneta City",
+    "status": "Active"
+  },
+  {
+    "code": "0801014",
+    "description": "Division of Vigan City",
+    "status": "Active"
+  },
+  {
+    "code": "0802001",
+    "description": "Division of Batanes",
+    "status": "Active"
+  },
+  {
+    "code": "0802002",
+    "description": "Division of Cagayan",
+    "status": "Active"
+  },
+  {
+    "code": "0802003",
+    "description": "Division of Isabela",
+    "status": "Active"
+  },
+  {
+    "code": "0802004",
+    "description": "Division of Nueva Vizcaya",
+    "status": "Active"
+  },
+  {
+    "code": "0802005",
+    "description": "Division of Quirino",
+    "status": "Active"
+  },
+  {
+    "code": "0802006",
+    "description": "Division of Cauayan City",
+    "status": "Active"
+  },
+  {
+    "code": "0802007",
+    "description": "Division of Santiago City",
+    "status": "Active"
+  },
+  {
+    "code": "0802008",
+    "description": "Division of Tuguegarao City",
+    "status": "Active"
+  },
+  {
+    "code": "0802009",
+    "description": "Division of Ilagan City",
+    "status": "Active"
+  },
+  {
+    "code": "0803001",
+    "description": "Division of Aurora",
+    "status": "Active"
+  },
+  {
+    "code": "0803002",
+    "description": "Division of Bataan",
+    "status": "Active"
+  },
+  {
+    "code": "0803003",
+    "description": "Division of Bulacan",
+    "status": "Active"
+  },
+  {
+    "code": "0803004",
+    "description": "Division of Nueva Ecija",
+    "status": "Active"
+  },
+  {
+    "code": "0803005",
+    "description": "Division of Pampanga",
+    "status": "Active"
+  },
+  {
+    "code": "0803006",
+    "description": "Division of Tarlac",
+    "status": "Active"
+  },
+  {
+    "code": "0803007",
+    "description": "Division of Zambales",
+    "status": "Active"
+  },
+  {
+    "code": "0803008",
+    "description": "Division of Angeles City",
+    "status": "Active"
+  },
+  {
+    "code": "0803009",
+    "description": "Division of Balanga City",
+    "status": "Active"
+  },
+  {
+    "code": "0803010",
+    "description": "Division of Cabanatuan City",
+    "status": "Active"
+  },
+  {
+    "code": "0803011",
+    "description": "Division of Gapan City",
+    "status": "Active"
+  },
+  {
+    "code": "0803012",
+    "description": "Division of Malolos City",
+    "status": "Active"
+  },
+  {
+    "code": "0803013",
+    "description": "Division of Muñoz Science City",
+    "status": "Active"
+  },
+  {
+    "code": "0803014",
+    "description": "Division of Olongapo City",
+    "status": "Active"
+  },
+  {
+    "code": "0803015",
+    "description": "Division of San Fernando City",
+    "status": "Active"
+  },
+  {
+    "code": "0803016",
+    "description": "Division of San Jose City",
+    "status": "Active"
+  },
+  {
+    "code": "0803017",
+    "description": "Division of San Jose del Monte City",
+    "status": "Active"
+  },
+  {
+    "code": "0803018",
+    "description": "Division of Tarlac City",
+    "status": "Active"
+  },
+  {
+    "code": "0803019",
+    "description": "Division of Meycauayan City",
+    "status": "Active"
+  },
+  {
+    "code": "0803020",
+    "description": "Division of Mabalacat City",
+    "status": "Active"
+  },
+  {
+    "code": "0803021",
+    "description": "Division of Baliwag City",
+    "status": "Active"
+  },
+  {
+    "code": "0804001",
+    "description": "Division of Batangas",
+    "status": "Active"
+  },
+  {
+    "code": "0804002",
+    "description": "Division of Cavite",
+    "status": "Active"
+  },
+  {
+    "code": "0804003",
+    "description": "Division of Laguna",
+    "status": "Active"
+  },
+  {
+    "code": "0804004",
+    "description": "Division of Quezon",
+    "status": "Active"
+  },
+  {
+    "code": "0804005",
+    "description": "Division of Rizal",
+    "status": "Active"
+  },
+  {
+    "code": "0804006",
+    "description": "Division of Antipolo City",
+    "status": "Active"
+  },
+  {
+    "code": "0804007",
+    "description": "Division of Batangas City",
+    "status": "Active"
+  },
+  {
+    "code": "0804008",
+    "description": "Division of Calamba City",
+    "status": "Active"
+  },
+  {
+    "code": "0804009",
+    "description": "Division of Cavite City",
+    "status": "Active"
+  },
+  {
+    "code": "0804010",
+    "description": "Division of Dasmariñas City",
+    "status": "Active"
+  },
+  {
+    "code": "0804011",
+    "description": "Division of Lipa City",
+    "status": "Active"
+  },
+  {
+    "code": "0804012",
+    "description": "Division of Lucena City",
+    "status": "Active"
+  },
+  {
+    "code": "0804013",
+    "description": "Division of San Pablo City",
+    "status": "Active"
+  },
+  {
+    "code": "0804014",
+    "description": "Division of Sta. Rosa City",
+    "status": "Active"
+  },
+  {
+    "code": "0804015",
+    "description": "Division of Tanauan City",
+    "status": "Active"
+  },
+  {
+    "code": "0804016",
+    "description": "Division of Tayabas City",
+    "status": "Active"
+  },
+  {
+    "code": "0804017",
+    "description": "Division of Bacoor City",
+    "status": "Active"
+  },
+  {
+    "code": "0804018",
+    "description": "Division of Imus City",
+    "status": "Active"
+  },
+  {
+    "code": "0804019",
+    "description": "Division of Biñan City",
+    "status": "Active"
+  },
+  {
+    "code": "0804020",
+    "description": "Division of Cabuyao City",
+    "status": "Active"
+  },
+  {
+    "code": "0804021",
+    "description": "Division of General Trias City",
+    "status": "Active"
+  },
+  {
+    "code": "0804022",
+    "description": "Division of San Pedro City",
+    "status": "Active"
+  },
+  {
+    "code": "0804023",
+    "description": "Division of Sto. Tomas City",
+    "status": "Active"
+  },
+  {
+    "code": "0804024",
+    "description": "Division of Calaca City",
+    "status": "Active"
+  },
+  {
+    "code": "0804026",
+    "description": "Division of Carmona City",
+    "status": "Active"
+  },
+  {
+    "code": "0805001",
+    "description": "Division of Albay",
+    "status": "Active"
+  },
+  {
+    "code": "0805002",
+    "description": "Division of Camarines Norte",
+    "status": "Active"
+  },
+  {
+    "code": "0805003",
+    "description": "Division of Camarines Sur",
+    "status": "Active"
+  },
+  {
+    "code": "0805004",
+    "description": "Division of Catanduanes",
+    "status": "Active"
+  },
+  {
+    "code": "0805005",
+    "description": "Division of Masbate",
+    "status": "Active"
+  },
+  {
+    "code": "0805006",
+    "description": "Division of Sorsogon",
+    "status": "Active"
+  },
+  {
+    "code": "0805007",
+    "description": "Division of Iriga City",
+    "status": "Active"
+  },
+  {
+    "code": "0805008",
+    "description": "Division of Legazpi City",
+    "status": "Active"
+  },
+  {
+    "code": "0805009",
+    "description": "Division of Ligao City",
+    "status": "Active"
+  },
+  {
+    "code": "0805010",
+    "description": "Division of Masbate City",
+    "status": "Active"
+  },
+  {
+    "code": "0805011",
+    "description": "Division of Naga City",
+    "status": "Active"
+  },
+  {
+    "code": "0805012",
+    "description": "Division of Sorsogon City",
+    "status": "Active"
+  },
+  {
+    "code": "0805013",
+    "description": "Division of Tabaco City",
+    "status": "Active"
+  },
+  {
+    "code": "0806001",
+    "description": "Division of Aklan",
+    "status": "Active"
+  },
+  {
+    "code": "0806002",
+    "description": "Division of Antique",
+    "status": "Active"
+  },
+  {
+    "code": "0806003",
+    "description": "Division of Capiz",
+    "status": "Active"
+  },
+  {
+    "code": "0806004",
+    "description": "Division of Guimaras",
+    "status": "Active"
+  },
+  {
+    "code": "0806005",
+    "description": "Division of Iloilo",
+    "status": "Active"
+  },
+  {
+    "code": "0806011",
+    "description": "Division of Iloilo City",
+    "status": "Active"
+  },
+  {
+    "code": "0806014",
+    "description": "Division of Passi City",
+    "status": "Active"
+  },
+  {
+    "code": "0806015",
+    "description": "Division of Roxas City",
+    "status": "Active"
+  },
+  {
+    "code": "0807001",
+    "description": "Division of Bohol",
+    "status": "Active"
+  },
+  {
+    "code": "0807002",
+    "description": "Division of Cebu Province",
+    "status": "Active"
+  },
+  {
+    "code": "0807007",
+    "description": "Division of Bogo City",
+    "status": "Active"
+  },
+  {
+    "code": "0807008",
+    "description": "Division of Carcar City",
+    "status": "Active"
+  },
+  {
+    "code": "0807009",
+    "description": "Division of Cebu City",
+    "status": "Active"
+  },
+  {
+    "code": "0807010",
+    "description": "Division of Danao City",
+    "status": "Active"
+  },
+  {
+    "code": "0807013",
+    "description": "Division of Lapu-lapu City",
+    "status": "Active"
+  },
+  {
+    "code": "0807014",
+    "description": "Division of Mandaue City",
+    "status": "Active"
+  },
+  {
+    "code": "0807015",
+    "description": "Division of Naga City",
+    "status": "Active"
+  },
+  {
+    "code": "0807016",
+    "description": "Division of Tagbilaran City",
+    "status": "Active"
+  },
+  {
+    "code": "0807017",
+    "description": "Division of Talisay City",
+    "status": "Active"
+  },
+  {
+    "code": "0807019",
+    "description": "Division of Toledo City",
+    "status": "Active"
+  },
+  {
+    "code": "0808001",
+    "description": "Division of Biliran",
+    "status": "Active"
+  },
+  {
+    "code": "0808002",
+    "description": "Division of Eastern Samar",
+    "status": "Active"
+  },
+  {
+    "code": "0808003",
+    "description": "Division of Leyte",
+    "status": "Active"
+  },
+  {
+    "code": "0808004",
+    "description": "Division of Northern Samar",
+    "status": "Active"
+  },
+  {
+    "code": "0808005",
+    "description": "Division of Samar",
+    "status": "Active"
+  },
+  {
+    "code": "0808006",
+    "description": "Division of Southern Leyte",
+    "status": "Active"
+  },
+  {
+    "code": "0808007",
+    "description": "Division of Baybay City",
+    "status": "Active"
+  },
+  {
+    "code": "0808008",
+    "description": "Division of Borongan City",
+    "status": "Active"
+  },
+  {
+    "code": "0808009",
+    "description": "Division of Calbayog City",
+    "status": "Active"
+  },
+  {
+    "code": "0808010",
+    "description": "Division of Catbalogan City",
+    "status": "Active"
+  },
+  {
+    "code": "0808011",
+    "description": "Division of Maasin City",
+    "status": "Active"
+  },
+  {
+    "code": "0808012",
+    "description": "Division of Ormoc City",
+    "status": "Active"
+  },
+  {
+    "code": "0808013",
+    "description": "Division of Tacloban City",
+    "status": "Active"
+  },
+  {
+    "code": "0809001",
+    "description": "Division of Zamboanga del Norte",
+    "status": "Active"
+  },
+  {
+    "code": "0809002",
+    "description": "Division of Zamboanga del Sur",
+    "status": "Active"
+  },
+  {
+    "code": "0809003",
+    "description": "Division of Zamboanga Sibugay",
+    "status": "Active"
+  },
+  {
+    "code": "0809004",
+    "description": "Division of Dapitan City",
+    "status": "Active"
+  },
+  {
+    "code": "0809005",
+    "description": "Division of Dipolog City",
+    "status": "Active"
+  },
+  {
+    "code": "0809006",
+    "description": "Division of Isabela City",
+    "status": "Active"
+  },
+  {
+    "code": "0809007",
+    "description": "Division of Pagadian City",
+    "status": "Active"
+  },
+  {
+    "code": "0809008",
+    "description": "Division of Zamboanga City",
+    "status": "Active"
+  },
+  {
+    "code": "0809009",
+    "description": "Division of Sulu",
+    "status": "Active"
+  },
+  {
+    "code": "0810001",
+    "description": "Division of Bukidnon",
+    "status": "Active"
+  },
+  {
+    "code": "0810002",
+    "description": "Division of Camiguin",
+    "status": "Active"
+  },
+  {
+    "code": "0810003",
+    "description": "Division of Lanao del Norte",
+    "status": "Active"
+  },
+  {
+    "code": "0810004",
+    "description": "Division of Misamis Occidental",
+    "status": "Active"
+  },
+  {
+    "code": "0810005",
+    "description": "Division of Misamis Oriental",
+    "status": "Active"
+  },
+  {
+    "code": "0810006",
+    "description": "Division of Cagayan de Oro City",
+    "status": "Active"
+  },
+  {
+    "code": "0810007",
+    "description": "Division of El Salvador City",
+    "status": "Active"
+  },
+  {
+    "code": "0810008",
+    "description": "Division of Gingoog City",
+    "status": "Active"
+  },
+  {
+    "code": "0810009",
+    "description": "Division of Iligan City",
+    "status": "Active"
+  },
+  {
+    "code": "0810010",
+    "description": "Division of Malaybalay City",
+    "status": "Active"
+  },
+  {
+    "code": "0810011",
+    "description": "Division of Oroquieta City",
+    "status": "Active"
+  },
+  {
+    "code": "0810012",
+    "description": "Division of Ozamiz City",
+    "status": "Active"
+  },
+  {
+    "code": "0810013",
+    "description": "Division of Tangub City",
+    "status": "Active"
+  },
+  {
+    "code": "0810014",
+    "description": "Division of Valencia City",
+    "status": "Active"
+  },
+  {
+    "code": "0811001",
+    "description": "Division of Davao de Oro",
+    "status": "Active"
+  },
+  {
+    "code": "0811002",
+    "description": "Division of Davao del Norte",
+    "status": "Active"
+  },
+  {
+    "code": "0811003",
+    "description": "Division of Davao del Sur",
+    "status": "Active"
+  },
+  {
+    "code": "0811004",
+    "description": "Division of Davao Oriental",
+    "status": "Active"
+  },
+  {
+    "code": "0811005",
+    "description": "Division of Davao City",
+    "status": "Active"
+  },
+  {
+    "code": "0811006",
+    "description": "Division of Digos City",
+    "status": "Active"
+  },
+  {
+    "code": "0811007",
+    "description": "Division of Island Garden City of Samal",
+    "status": "Active"
+  },
+  {
+    "code": "0811008",
+    "description": "Division of Mati City",
+    "status": "Active"
+  },
+  {
+    "code": "0811009",
+    "description": "Division of Panabo City",
+    "status": "Active"
+  },
+  {
+    "code": "0811010",
+    "description": "Division of Tagum City",
+    "status": "Active"
+  },
+  {
+    "code": "0811011",
+    "description": "Division of Davao Occidental",
+    "status": "Active"
+  },
+  {
+    "code": "0812001",
+    "description": "Division of Cotabato",
+    "status": "Active"
+  },
+  {
+    "code": "0812002",
+    "description": "Division of Sarangani",
+    "status": "Active"
+  },
+  {
+    "code": "0812003",
+    "description": "Division of South Cotabato",
+    "status": "Active"
+  },
+  {
+    "code": "0812004",
+    "description": "Division of Sultan Kudarat",
+    "status": "Active"
+  },
+  {
+    "code": "0812006",
+    "description": "Division of General Santos City",
+    "status": "Active"
+  },
+  {
+    "code": "0812007",
+    "description": "Division of Kidapawan City",
+    "status": "Active"
+  },
+  {
+    "code": "0812008",
+    "description": "Division of Koronadal City",
+    "status": "Active"
+  },
+  {
+    "code": "0812009",
+    "description": "Division of Tacurong City",
+    "status": "Active"
+  },
+  {
+    "code": "0813001",
+    "description": "Division of Caloocan",
+    "status": "Active"
+  },
+  {
+    "code": "0813002",
+    "description": "Division of Las Piñas",
+    "status": "Active"
+  },
+  {
+    "code": "0813003",
+    "description": "Division of Makati",
+    "status": "Active"
+  },
+  {
+    "code": "0813004",
+    "description": "Division of Malabon City",
+    "status": "Active"
+  },
+  {
+    "code": "0813005",
+    "description": "Division of Mandaluyong",
+    "status": "Active"
+  },
+  {
+    "code": "0813006",
+    "description": "Division of Manila",
+    "status": "Active"
+  },
+  {
+    "code": "0813007",
+    "description": "Division of Marikina",
+    "status": "Active"
+  },
+  {
+    "code": "0813008",
+    "description": "Division of Muntinlupa",
+    "status": "Active"
+  },
+  {
+    "code": "0813009",
+    "description": "Division of Parañaque",
+    "status": "Active"
+  },
+  {
+    "code": "0813010",
+    "description": "Division of Navotas City",
+    "status": "Active"
+  },
+  {
+    "code": "0813011",
+    "description": "Division of Pasay City",
+    "status": "Active"
+  },
+  {
+    "code": "0813012",
+    "description": "Division of Pasig City",
+    "status": "Active"
+  },
+  {
+    "code": "0813013",
+    "description": "Division of Quezon City",
+    "status": "Active"
+  },
+  {
+    "code": "0813014",
+    "description": "Division of San Juan City",
+    "status": "Active"
+  },
+  {
+    "code": "0813015",
+    "description": "Division of Taguig and Pateros",
+    "status": "Active"
+  },
+  {
+    "code": "0813016",
+    "description": "Division of Valenzuela",
+    "status": "Active"
+  },
+  {
+    "code": "0814001",
+    "description": "Division of Abra",
+    "status": "Active"
+  },
+  {
+    "code": "0814002",
+    "description": "Division of Apayao",
+    "status": "Active"
+  },
+  {
+    "code": "0814003",
+    "description": "Division of Benguet",
+    "status": "Active"
+  },
+  {
+    "code": "0814004",
+    "description": "Division of Ifugao",
+    "status": "Active"
+  },
+  {
+    "code": "0814005",
+    "description": "Division of Kalinga",
+    "status": "Active"
+  },
+  {
+    "code": "0814006",
+    "description": "Division of Mt. Province",
+    "status": "Active"
+  },
+  {
+    "code": "0814007",
+    "description": "Division of Baguio City",
+    "status": "Active"
+  },
+  {
+    "code": "0814008",
+    "description": "Division of Tabuk City",
+    "status": "Active"
+  },
+  {
+    "code": "0816001",
+    "description": "Division of Agusan del Norte",
+    "status": "Active"
+  },
+  {
+    "code": "0816002",
+    "description": "Division of Agusan del Sur",
+    "status": "Active"
+  },
+  {
+    "code": "0816003",
+    "description": "Division of Dinagat Island",
+    "status": "Active"
+  },
+  {
+    "code": "0816004",
+    "description": "Division of Siargao",
+    "status": "Active"
+  },
+  {
+    "code": "0816005",
+    "description": "Division of Surigao del Norte",
+    "status": "Active"
+  },
+  {
+    "code": "0816006",
+    "description": "Division of Surigao del Sur",
+    "status": "Active"
+  },
+  {
+    "code": "0816007",
+    "description": "Division of Bayugan City",
+    "status": "Active"
+  },
+  {
+    "code": "0816008",
+    "description": "Division of Bislig City",
+    "status": "Active"
+  },
+  {
+    "code": "0816009",
+    "description": "Division of Butuan City",
+    "status": "Active"
+  },
+  {
+    "code": "0816010",
+    "description": "Division of Cabadbaran City",
+    "status": "Active"
+  },
+  {
+    "code": "0816011",
+    "description": "Division of Surigao City",
+    "status": "Active"
+  },
+  {
+    "code": "0816012",
+    "description": "Division of Tandag City",
+    "status": "Active"
+  },
+  {
+    "code": "0817001",
+    "description": "Division of Marinduque",
+    "status": "Active"
+  },
+  {
+    "code": "0817002",
+    "description": "Division of Occidental Mindoro",
+    "status": "Active"
+  },
+  {
+    "code": "0817003",
+    "description": "Division of Oriental Mindoro",
+    "status": "Active"
+  },
+  {
+    "code": "0817004",
+    "description": "Division of Palawan",
+    "status": "Active"
+  },
+  {
+    "code": "0817005",
+    "description": "Division of Romblon",
+    "status": "Active"
+  },
+  {
+    "code": "0817006",
+    "description": "Division of Calapan City",
+    "status": "Active"
+  },
+  {
+    "code": "0817007",
+    "description": "Division of Puerto Princesa City",
+    "status": "Active"
+  },
+  {
+    "code": "0818001",
+    "description": "Division of Negros Occidental",
+    "status": "Active"
+  },
+  {
+    "code": "0818002",
+    "description": "Division of Negros Oriental",
+    "status": "Active"
+  },
+  {
+    "code": "0818003",
+    "description": "Division of Bacolod City",
+    "status": "Active"
+  },
+  {
+    "code": "0818004",
+    "description": "Division of Bago City",
+    "status": "Active"
+  },
+  {
+    "code": "0818005",
+    "description": "Division of Bais City",
+    "status": "Active"
+  },
+  {
+    "code": "0818006",
+    "description": "Division of Bayawan City",
+    "status": "Active"
+  },
+  {
+    "code": "0818007",
+    "description": "Division of Cadiz City",
+    "status": "Active"
+  },
+  {
+    "code": "0818008",
+    "description": "Division of Dumaguete City",
+    "status": "Active"
+  },
+  {
+    "code": "0818009",
+    "description": "Division of Escalante City",
+    "status": "Active"
+  },
+  {
+    "code": "0818010",
+    "description": "Division of Guihulngan City",
+    "status": "Active"
+  },
+  {
+    "code": "0818011",
+    "description": "Division of Kabankalan City",
+    "status": "Active"
+  },
+  {
+    "code": "0818012",
+    "description": "Division of La Carlota City",
+    "status": "Active"
+  },
+  {
+    "code": "0818013",
+    "description": "Division of Sagay City",
+    "status": "Active"
+  },
+  {
+    "code": "0818014",
+    "description": "Division of San Carlos City",
+    "status": "Active"
+  },
+  {
+    "code": "0818015",
+    "description": "Division of Silay City",
+    "status": "Active"
+  },
+  {
+    "code": "0818016",
+    "description": "Division of Tanjay City",
+    "status": "Active"
+  },
+  {
+    "code": "0818017",
+    "description": "Division of Canlaon City",
+    "status": "Active"
+  },
+  {
+    "code": "0818018",
+    "description": "Division of Himamaylan City",
+    "status": "Active"
+  },
+  {
+    "code": "0818019",
+    "description": "Division of Sipalay City",
+    "status": "Active"
+  },
+  {
+    "code": "0818020",
+    "description": "Division of Victorias City",
+    "status": "Active"
+  },
+  {
+    "code": "0818021",
+    "description": "Division of Siquijor",
+    "status": "Active"
+  }
+]

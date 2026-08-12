@@ -1,0 +1,12 @@
+[
+  {
+    "entity": "location",
+    "total_regions": 18,
+    "total_provinces": 0,
+    "total_cities_municipalities": 0,
+    "total_barangays": 0,
+    "note": "NEP-FY2027 only carries region-level geography",
+    "source": "derived from NEP-FY2027",
+    "conversion_date": "2026-08-12T23:56:51.897700"
+  }
+]

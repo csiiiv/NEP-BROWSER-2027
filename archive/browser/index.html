@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEP Budget Browser</title>
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --fg: #1a1a1a;
+    --muted: #6b6b6b;
+    --accent: #0066cc;
+    --accent-soft: #e6f0ff;
+    --border: #e0e0e0;
+    --row-hover: #eef2f7;
+    --zero-amount: #999;
+    --aa-color: #b8002e;
+    --aa-soft: #fde8ee;
+    --prog-color: #1a7a3a;
+    --prog-soft: #e6f4ea;
+    --tree-line: #cfd6de;
+    --panel: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-size: 14px;
+    line-height: 1.45;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  header {
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px 8px;
+    flex-shrink: 0;
+    z-index: 10;
+  }
+  header .header-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 650;
+  }
+  header .meta {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 2px;
+  }
+  .controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    margin-top: 6px;
+    font-size: 12px;
+  }
+  .controls label { color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
+  .controls select {
+    padding: 3px 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 12px;
+    background: white;
+  }
+  .view-path {
+    margin-top: 6px;
+    font-size: 11px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .view-path strong { color: var(--fg); font-weight: 600; }
+  .view-path .step {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 3px;
+    background: #f0f2f5;
+    color: var(--fg);
+    font-weight: 500;
+  }
+  .view-path .arrow { margin: 0 4px; color: #9aa3ad; }
+
+  /* Compact totals strip; full cards optional */
+  .summary-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+    font-size: 12px;
+  }
+  .summary-bar .inline-totals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    color: var(--muted);
+  }
+  .summary-bar .inline-totals b {
+    color: var(--fg);
+    font-variant-numeric: tabular-nums;
+    font-weight: 650;
+  }
+  .summary-bar .inline-totals .aa b { color: var(--aa-color); }
+  .summary-bar .inline-totals .prog b { color: var(--prog-color); }
+  .linkish {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 11px;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .linkish:hover { color: var(--fg); background: #f5f5f5; }
+
+  .cards {
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .cards.open { display: grid; }
+  .card {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: white;
+  }
+  .card .card-label {
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 2px;
+  }
+  .card .card-value {
+    font-size: 18px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+  }
+  .card .card-sub {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .card.aa { background: var(--aa-soft); border-color: #f5b8c5; }
+  .card.aa .card-value { color: var(--aa-color); }
+  .card.programmed { background: var(--prog-soft); border-color: #b3dec3; }
+  .card.programmed .card-value { color: var(--prog-color); }
+
+  .toolbar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .toolbar label {
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .toolbar select, .toolbar input[type="text"] {
+    padding: 3px 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 12px;
+    background: white;
+  }
+  .toolbar input[type="text"] { min-width: 220px; }
+  .toolbar > button {
+    padding: 3px 10px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .toolbar > button:hover { background: #0052a3; }
+  .toolbar > button.secondary {
+    background: white;
+    color: var(--fg);
+    border: 1px solid var(--border);
+  }
+
+  .btn-group {
+    display: inline-flex;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .btn-group button {
+    background: white;
+    color: var(--muted);
+    border: none;
+    border-right: 1px solid var(--border);
+    border-radius: 0;
+    padding: 3px 10px;
+    font-size: 11px;
+    cursor: pointer;
+  }
+  .btn-group button:last-child { border-right: none; }
+  .btn-group button.active { background: var(--accent); color: white; }
+  .btn-group button.active.aa { background: var(--aa-color); }
+  .btn-group button.active.prog { background: var(--prog-color); }
+
+  main {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(340px, 1.15fr) minmax(300px, 1fr);
+  }
+
+  /* Tree panel */
+  .tree-panel {
+    overflow: auto;
+    padding: 10px 8px 16px 12px;
+    border-right: 1px solid var(--border);
+    background: var(--panel);
+  }
+  .tree-panel-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0 6px 8px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--panel);
+    z-index: 2;
+  }
+  .tree-panel-head h2 {
+    margin: 0;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .tree-node { user-select: none; }
+  .tree-row {
+    display: flex;
+    align-items: center;
+    padding: 4px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    gap: 6px;
+    min-height: 28px;
+  }
+  .tree-row:hover { background: var(--row-hover); }
+  .tree-row.selected {
+    background: var(--accent-soft);
+    box-shadow: inset 2px 0 0 var(--accent);
+  }
+  .tree-row .caret {
+    width: 14px;
+    flex-shrink: 0;
+    text-align: center;
+    color: var(--muted);
+    font-size: 9px;
+    transition: transform 0.12s ease;
+  }
+  .tree-row .caret.expanded { transform: rotate(90deg); }
+  .tree-row .caret.invisible { visibility: hidden; }
+
+  .kind-chip {
+    flex-shrink: 0;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    padding: 1px 5px;
+    border-radius: 3px;
+    background: #eef1f4;
+    color: #4a5560;
+    min-width: 2.6em;
+    text-align: center;
+  }
+  .kind-chip.k-dept { background: #e8eef8; color: #2a4a7a; }
+  .kind-chip.k-agency { background: #e9f0fa; color: #355a8a; }
+  .kind-chip.k-region { background: #eaf6ef; color: #2d6a45; }
+  .kind-chip.k-division { background: #f3eef8; color: #5a3d7a; }
+  .kind-chip.k-ou { background: #fff3e6; color: #8a4b12; }
+  .kind-chip.k-program { background: #e8f4fc; color: #1a5f8a; }
+  .kind-chip.k-section { background: #f0f0f0; color: #444; }
+  .kind-chip.k-aa_item { background: var(--aa-soft); color: var(--aa-color); }
+  .kind-chip.k-root { background: #1a1a1a; color: #fff; }
+
+  .tree-row .code {
+    flex-shrink: 0;
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-size: 10px;
+    color: var(--muted);
+    background: #f3f4f6;
+    padding: 1px 4px;
+    border-radius: 3px;
+    max-width: 7.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .tree-row .label {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .tree-row .stats {
+    flex-shrink: 0;
+    font-size: 11px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    text-align: right;
+  }
+  .tree-row .stats .amount {
+    color: var(--fg);
+    font-weight: 600;
+  }
+  .tree-row .stats .count { opacity: 0.85; }
+
+  .tree-row.kind-dept > .label { font-weight: 650; }
+  .tree-row.kind-agency > .label { font-weight: 550; }
+  .tree-row.kind-section > .label { font-weight: 700; }
+  .tree-row.kind-section-automatic > .label { color: var(--aa-color); }
+  .tree-row.kind-section-programmed > .label { color: var(--prog-color); }
+  .tree-row.kind-root > .label { font-weight: 700; font-size: 14px; }
+
+  .tree-root-header {
+    padding: 2px 0 6px;
+    margin-bottom: 2px;
+  }
+
+  /* Branch rails — make nesting obvious */
+  .tree-children {
+    display: none;
+    margin-left: 7px;
+    padding-left: 10px;
+    border-left: 1.5px solid var(--tree-line);
+  }
+  .tree-children.open { display: block; }
+  .tree-children .tree-node {
+    position: relative;
+  }
+  .tree-children .tree-node::before {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 14px;
+    width: 8px;
+    border-top: 1.5px solid var(--tree-line);
+  }
+  .tree-loading {
+    padding: 4px 8px 4px 20px;
+    color: var(--muted);
+    font-size: 12px;
+    font-style: italic;
+  }
+  .tree-empty {
+    padding: 28px 16px;
+    color: var(--muted);
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* Items panel */
+  .items-panel {
+    overflow: auto;
+    padding: 12px 14px;
+    background: var(--bg);
+  }
+  .items-header {
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 2;
+  }
+  .items-header h2 {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+    font-weight: 650;
+  }
+  .items-header .breadcrumb {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  .items-header .summary {
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .items-header .summary strong { color: var(--fg); }
+
+  .load-prompt {
+    margin-top: 20px;
+    padding: 16px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    max-width: 420px;
+  }
+  .load-prompt p {
+    margin: 0 0 12px;
+    font-size: 13px;
+    color: var(--fg);
+  }
+  .load-prompt .hint {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .load-prompt button {
+    padding: 6px 12px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+  }
+  .load-prompt button.cancel {
+    background: white;
+    color: var(--fg);
+    border: 1px solid var(--border);
+    margin-left: 8px;
+  }
+
+  .loading-box {
+    padding: 24px;
+    text-align: center;
+    color: var(--muted);
+  }
+  .loading-box .spinner {
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    background: var(--panel);
+  }
+  th {
+    text-align: left;
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    color: var(--muted);
+    background: var(--panel);
+    position: sticky;
+    top: 0;
+  }
+  th.num { text-align: right; }
+  td {
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  td.num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  tr.zero-amount td.num { color: var(--zero-amount); }
+  tr:hover { background: var(--row-hover); }
+  td.description {
+    max-width: 280px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .item-id {
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .badge {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 9px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-left: 6px;
+  }
+  .badge.aa {
+    background: var(--aa-soft);
+    color: var(--aa-color);
+  }
+  .item-detail {
+    margin-top: 16px;
+    padding: 12px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  .item-detail dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 4px 12px;
+    margin: 0;
+  }
+  .item-detail dt { color: var(--muted); }
+  .item-detail dd {
+    margin: 0;
+    word-break: break-word;
+  }
+  .pagination {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .pagination button {
+    padding: 2px 8px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .pagination button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 900px) {
+    main { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+    .tree-panel { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-row">
+    <div>
+      <h1>NEP Budget Browser</h1>
+      <div class="meta">Philippine National Expenditure Program · amounts in pesos</div>
+      <div class="controls">
+        <label for="year-select">FY
+          <select id="year-select"></select>
+        </label>
+        <span class="view-toggle">
+          <span class="btn-group" id="view-toggle">
+            <button type="button" data-v="place" class="active" title="Dept → Agency → Region → Division → OU → Program">Place</button>
+            <button type="button" data-v="nep" title="Dept → Agency → Program → Region → Division → OU">NEP</button>
+          </span>
+        </span>
+      </div>
+      <div class="view-path" id="view-path"></div>
+    </div>
+  </div>
+
+  <div class="summary-bar">
+    <div class="inline-totals" id="inline-totals">
+      <span>Total <b id="inline-grand">—</b></span>
+      <span class="aa">Automatic <b id="inline-aa">—</b></span>
+      <span class="prog">Programmed <b id="inline-prog">—</b></span>
+    </div>
+    <button type="button" class="linkish" id="toggle-cards">Show details</button>
+  </div>
+
+  <div class="cards" id="cards">
+    <div class="card grand">
+      <div class="card-label">NEP Grand Total</div>
+      <div class="card-value" id="card-grand">—</div>
+      <div class="card-sub" id="card-grand-sub"></div>
+    </div>
+    <div class="card aa">
+      <div class="card-label">Automatic Appropriations</div>
+      <div class="card-value" id="card-aa">—</div>
+      <div class="card-sub" id="card-aa-sub"></div>
+    </div>
+    <div class="card programmed">
+      <div class="card-label">Programmed Appropriations</div>
+      <div class="card-value" id="card-prog">—</div>
+      <div class="card-sub" id="card-prog-sub"></div>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <span class="btn-group" id="appropriation-toggle">
+      <button data-v="all" class="active">All</button>
+      <button data-v="aa" class="aa">Automatic</button>
+      <button data-v="programmed" class="prog">Programmed</button>
+    </span>
+    <label>
+      Amount
+      <select id="amount-filter">
+        <option value="all">All</option>
+        <option value="nonzero" selected>Non-zero</option>
+        <option value="zero">Zero only</option>
+      </select>
+    </label>
+    <label>
+      Search
+      <input type="text" id="search-input" placeholder="flood control, RLIP, NTA…">
+    </label>
+    <button id="search-btn">Search</button>
+    <button id="reset-btn" class="secondary">Reset</button>
+  </div>
+</header>
+
+<main>
+  <div class="tree-panel" id="tree-panel">
+    <div class="tree-panel-head">
+      <h2>Hierarchy</h2>
+      <span id="tree-view-label" style="font-size:11px;color:var(--muted)"></span>
+    </div>
+    <div id="tree-root" class="tree-container"></div>
+  </div>
+  <div class="items-panel" id="items-panel">
+    <div class="items-header">
+      <h2 id="items-title">Select a branch</h2>
+      <div class="breadcrumb" id="items-breadcrumb"></div>
+      <div class="summary" id="items-summary"></div>
+    </div>
+    <div id="items-content">
+      <div class="tree-empty">Expand the tree on the left, then click a node to load line items.</div>
+    </div>
+  </div>
+</main>
+
+<script>
+// ---------- State ----------
+const VIEW_PATHS = {
+  place: ["Dept", "Agency", "Region", "Division", "OU", "Program"],
+  nep: ["Dept", "Agency", "Program", "Region", "Division", "OU"],
+};
+const KIND_LABELS = {
+  root: "Total",
+  section: "Section",
+  aa_item: "AA",
+  dept: "Dept",
+  agency: "Agency",
+  region: "Region",
+  division: "Div",
+  ou: "OU",
+  program: "Prog",
+};
+/** Skip auto-fetch when node has more than this many indexed items. */
+const LARGE_NODE_THRESHOLD = 2500;
+
+const state = {
+  year: null,
+  years: [],
+  view: "place",
+  selectedNode: null,
+  amountFilter: "nonzero",
+  appropriation: "all",
+  search: "",
+  itemsOffset: 0,
+  itemsLimit: 100,
+  itemsTotal: 0,
+  expanded: new Set(),
+  loaded: new Set(),
+  itemsAbort: null,
+  loadTimer: null,
+  forceLoadItems: false,
+};
+
+// ---------- Helpers ----------
+function formatAmountP(pesos) {
+  if (pesos == null || Number.isNaN(Number(pesos))) return "₱0.00";
+  const n = Number(pesos);
+  if (n === 0) return "₱0.00";
+  const sign = n < 0 ? "-" : "";
+  const abs = Math.abs(n);
+  if (abs >= 1e12) return `${sign}₱${(abs / 1e12).toFixed(2)}T`;
+  if (abs >= 1e9) return `${sign}₱${(abs / 1e9).toFixed(2)}B`;
+  if (abs >= 1e6) return `${sign}₱${(abs / 1e6).toFixed(2)}M`;
+  if (abs >= 1e3) return `${sign}₱${(abs / 1e3).toFixed(2)}K`;
+  return `${sign}₱${abs.toFixed(2)}`;
+}
+function formatAmountT(trillions) {
+  return formatAmountP((Number(trillions) || 0) * 1e12);
+}
+function formatNum(n) {
+  return Number(n).toLocaleString();
+}
+function nodeKey(node) {
+  if (node.parent) return `${node.kind}:${node.parent}:${node.code}`;
+  return `${node.kind}:${node.code}`;
+}
+function escapeHtml(s) {
+  if (s == null) return "";
+  return String(s)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+}
+
+/** Short code for tree display; full code stays in title tooltip. */
+function displayCode(node) {
+  if (!node.code || node.kind === "root" || node.kind === "section") return null;
+  const c = String(node.code);
+  if (c.includes("|")) {
+    const parts = c.split("|");
+    return parts[parts.length - 1];
+  }
+  if (c.length > 14) return c.slice(0, 10) + "…";
+  return c;
+}
+
+function updateViewPath() {
+  const steps = VIEW_PATHS[state.view] || VIEW_PATHS.place;
+  const el = document.getElementById("view-path");
+  el.innerHTML = `<strong>${state.view === "nep" ? "NEP" : "Place"} path</strong> `
+    + steps.map(s => `<span class="step">${s}</span>`).join('<span class="arrow">›</span>');
+  document.getElementById("tree-view-label").textContent =
+    state.view === "nep" ? "PDF-like program order" : "Geographic place order";
+}
+
+function abortItemsFetch() {
+  if (state.itemsAbort) {
+    state.itemsAbort.abort();
+    state.itemsAbort = null;
+  }
+  if (state.loadTimer) {
+    clearInterval(state.loadTimer);
+    state.loadTimer = null;
+  }
+}
+
+function resetTreeSelection() {
+  abortItemsFetch();
+  state.expanded.clear();
+  state.loaded.clear();
+  state.selectedNode = null;
+  state.forceLoadItems = false;
+  document.getElementById("items-content").innerHTML =
+    '<div class="tree-empty">Expand the tree on the left, then click a node to load line items.</div>';
+  document.getElementById("items-title").textContent = "Select a branch";
+  document.getElementById("items-breadcrumb").textContent = "";
+  document.getElementById("items-summary").textContent = "";
+}
+
+// ---------- Boot ----------
+async function boot() {
+  const res = await fetch("/api/years");
+  const data = await res.json();
+  state.years = data.years;
+  state.year = data.years[0];
+  const sel = document.getElementById("year-select");
+  data.years.forEach(y => {
+    const opt = document.createElement("option");
+    opt.value = y;
+    opt.textContent = y;
+    sel.appendChild(opt);
+  });
+  sel.value = state.year;
+  sel.addEventListener("change", (e) => {
+    state.year = e.target.value;
+    resetTreeSelection();
+    loadSummary();
+    loadRoot();
+  });
+
+  document.querySelectorAll("#view-toggle button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (btn.dataset.v === state.view) return;
+      document.querySelectorAll("#view-toggle button")
+        .forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      state.view = btn.dataset.v;
+      updateViewPath();
+      resetTreeSelection();
+      loadRoot();
+    });
+  });
+
+  document.querySelectorAll("#appropriation-toggle button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("#appropriation-toggle button")
+        .forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      state.appropriation = btn.dataset.v;
+      state.itemsOffset = 0;
+      state.forceLoadItems = true;
+      if (state.selectedNode) loadItems();
+    });
+  });
+
+  document.getElementById("toggle-cards").addEventListener("click", () => {
+    const cards = document.getElementById("cards");
+    const open = cards.classList.toggle("open");
+    document.getElementById("toggle-cards").textContent =
+      open ? "Hide details" : "Show details";
+  });
+
+  updateViewPath();
+  loadSummary();
+  loadRoot();
+}
+
+async function loadSummary() {
+  const res = await fetch(`/api/summary?year=${state.year}`);
+  if (!res.ok) return;
+  const data = await res.json();
+  const grand = formatAmountP(data.grand_total_pesos);
+  const aa = formatAmountP(data.aa_total_pesos);
+  const prog = formatAmountP(data.programmed_total_pesos);
+  document.getElementById("inline-grand").textContent = grand;
+  document.getElementById("inline-aa").textContent = aa;
+  document.getElementById("inline-prog").textContent = prog;
+  document.getElementById("card-grand").textContent = grand;
+  document.getElementById("card-grand-sub").textContent =
+    `level-0 · ${data.aa_breakdown.length} AA categories · ${data.departments} departments`;
+  document.getElementById("card-aa").textContent = aa;
+  document.getElementById("card-aa-sub").textContent =
+    `${data.aa_share_pct.toFixed(1)}% of NEP`;
+  document.getElementById("card-prog").textContent = prog;
+  document.getElementById("card-prog-sub").textContent =
+    `${(100 - data.aa_share_pct).toFixed(1)}% of NEP`;
+}
+
+// ---------- Tree ----------
+async function loadRoot() {
+  const res = await fetch(`/api/tree?year=${state.year}&view=${state.view}`);
+  const data = await res.json();
+  const container = document.getElementById("tree-root");
+  container.innerHTML = "";
+
+  const header = document.createElement("div");
+  header.className = "tree-root-header";
+  const rootNode = {
+    kind: "root",
+    code: data.code || "total",
+    label: data.label,
+    item_count: data.item_count,
+    amount_display_trillions: data.amount_display_trillions,
+    child_count: data.children.length,
+  };
+  header.appendChild(renderTreeNode(rootNode, "", { isRootHeader: true }));
+  container.appendChild(header);
+
+  data.children.forEach(child => {
+    container.appendChild(renderTreeNode(child, data.label));
+  });
+}
+
+function isExpandable(node) {
+  return node.child_count > 0 && node.kind !== "aa_item";
+}
+
+function renderTreeNode(node, parentBreadcrumb, opts = {}) {
+  const breadcrumb = parentBreadcrumb
+    ? `${parentBreadcrumb} › ${node.label}`
+    : node.label;
+  const wrapper = document.createElement("div");
+  wrapper.className = "tree-node";
+  wrapper.dataset.key = nodeKey(node);
+
+  const row = document.createElement("div");
+  const sectionClass = node.kind === "section" ? ` kind-section-${node.code}` : "";
+  row.className = `tree-row kind-${node.kind}${sectionClass}`;
+  if (state.selectedNode && nodeKey(state.selectedNode) === nodeKey(node)) {
+    row.classList.add("selected");
+  }
+
+  const caret = document.createElement("span");
+  caret.className = "caret";
+  if (isExpandable(node)) {
+    caret.textContent = "▶";
+    if (state.expanded.has(nodeKey(node))) caret.classList.add("expanded");
+  } else {
+    caret.classList.add("invisible");
+  }
+
+  const chip = document.createElement("span");
+  chip.className = `kind-chip k-${node.kind}`;
+  chip.textContent = KIND_LABELS[node.kind] || node.kind;
+
+  const short = displayCode(node);
+  let codeEl = null;
+  if (short) {
+    codeEl = document.createElement("span");
+    codeEl.className = "code";
+    codeEl.textContent = short;
+    codeEl.title = node.code;
+  }
+
+  const label = document.createElement("span");
+  label.className = "label";
+  label.textContent = node.label;
+  label.title = node.code
+    ? `${node.label}\n${node.code}`
+    : node.label;
+
+  const stats = document.createElement("span");
+  stats.className = "stats";
+  const amountSpan = document.createElement("span");
+  amountSpan.className = "amount";
+  amountSpan.textContent = formatAmountT(node.amount_display_trillions);
+  stats.appendChild(amountSpan);
+  if (node.item_count != null) {
+    const count = document.createElement("span");
+    count.className = "count";
+    count.textContent = ` · ${formatNum(node.item_count)}`;
+    stats.appendChild(count);
+  }
+
+  row.appendChild(caret);
+  row.appendChild(chip);
+  if (codeEl) row.appendChild(codeEl);
+  row.appendChild(label);
+  row.appendChild(stats);
+
+  const children = document.createElement("div");
+  children.className = "tree-children";
+  if (state.expanded.has(nodeKey(node))) children.classList.add("open");
+
+  row.addEventListener("click", async (e) => {
+    e.stopPropagation();
+    selectNode(node, breadcrumb);
+    if (isExpandable(node)) {
+      await toggleExpand(node, children, caret, breadcrumb);
+    }
+  });
+
+  wrapper.appendChild(row);
+  if (!opts.isRootHeader) {
+    wrapper.appendChild(children);
+    if (state.expanded.has(nodeKey(node)) && !state.loaded.has(nodeKey(node))) {
+      toggleExpand(node, children, caret, breadcrumb);
+    }
+  }
+
+  return wrapper;
+}
+
+async function toggleExpand(node, childrenEl, caretEl, breadcrumb) {
+  const key = nodeKey(node);
+  if (state.expanded.has(key)) {
+    state.expanded.delete(key);
+    state.loaded.delete(key);
+    childrenEl.classList.remove("open");
+    childrenEl.innerHTML = "";
+    caretEl.classList.remove("expanded");
+    return;
+  }
+  state.expanded.add(key);
+  childrenEl.classList.add("open");
+  caretEl.classList.add("expanded");
+
+  if (state.loaded.has(key)) return;
+  state.loaded.add(key);
+
+  const loading = document.createElement("div");
+  loading.className = "tree-loading";
+  loading.textContent = "Loading branches…";
+  childrenEl.appendChild(loading);
+
+  try {
+    let url = `/api/tree/${node.kind}/${encodeURIComponent(node.code)}`
+      + `?year=${state.year}&view=${state.view}`;
+    if (node.parent) url += `&parent=${encodeURIComponent(node.parent)}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    childrenEl.removeChild(loading);
+    if (!data.children.length) {
+      const empty = document.createElement("div");
+      empty.className = "tree-loading";
+      empty.textContent = "No child branches";
+      childrenEl.appendChild(empty);
+      return;
+    }
+    data.children.forEach(child => {
+      if (child.kind === "program" && !child.parent) child.parent = node.code;
+      childrenEl.appendChild(renderTreeNode(child, breadcrumb));
+    });
+  } catch (err) {
+    loading.textContent = `Error: ${err.message}`;
+    loading.style.color = "red";
+    state.loaded.delete(key);
+    state.expanded.delete(key);
+  }
+}
+
+// ---------- Items panel ----------
+function selectNode(node, breadcrumb) {
+  state.selectedNode = node;
+  state.selectedNode.breadcrumb = breadcrumb;
+  state.itemsOffset = 0;
+  state.forceLoadItems = false;
+  document.querySelectorAll(".tree-row.selected").forEach(el => el.classList.remove("selected"));
+  const wrapper = document.querySelector(`[data-key="${CSS.escape(nodeKey(node))}"]`);
+  if (wrapper) wrapper.querySelector(".tree-row").classList.add("selected");
+
+  const title = document.getElementById("items-title");
+  const crumb = document.getElementById("items-breadcrumb");
+  title.textContent = node.label;
+  const kind = KIND_LABELS[node.kind] || node.kind;
+  const codeBit = node.code && node.kind !== "root"
+    ? `<code class="item-id" title="${escapeHtml(node.code)}">${escapeHtml(displayCode(node) || node.code)}</code> `
+    : "";
+  crumb.innerHTML = `${codeBit}<span class="kind-chip k-${node.kind}" style="display:inline-block;margin-right:6px">${kind}</span>${escapeHtml(breadcrumb || "")}`;
+
+  const count = node.item_count || 0;
+  if (count > LARGE_NODE_THRESHOLD) {
+    showLargeNodePrompt(node);
+    return;
+  }
+  loadItems();
+}
+
+function showLargeNodePrompt(node) {
+  abortItemsFetch();
+  const summary = document.getElementById("items-summary");
+  const content = document.getElementById("items-content");
+  summary.innerHTML =
+    `<strong>${formatNum(node.item_count)}</strong> indexed items · ${formatAmountT(node.amount_display_trillions)}`;
+  content.innerHTML = `
+    <div class="load-prompt">
+      <p>This branch is large (<strong>${formatNum(node.item_count)}</strong> items).</p>
+      <div class="hint">Loading scans every batch file and can take a while. Prefer drilling into a smaller child (region, division, or OU), or load anyway.</div>
+      <button type="button" id="force-load-btn">Load line items</button>
+      <button type="button" class="cancel" id="skip-load-btn">Keep browsing tree</button>
+    </div>`;
+  document.getElementById("force-load-btn").addEventListener("click", () => {
+    state.forceLoadItems = true;
+    loadItems();
+  });
+  document.getElementById("skip-load-btn").addEventListener("click", () => {
+    content.innerHTML =
+      '<div class="tree-empty">Tree selection kept. Expand a smaller branch to load items faster.</div>';
+  });
+}
+
+async function loadItems() {
+  if (!state.selectedNode) return;
+  const node = state.selectedNode;
+  const summary = document.getElementById("items-summary");
+  const content = document.getElementById("items-content");
+
+  abortItemsFetch();
+  const ac = new AbortController();
+  state.itemsAbort = ac;
+
+  const started = Date.now();
+  summary.innerHTML = "Loading items…";
+  content.innerHTML = `
+    <div class="loading-box">
+      <div class="spinner"></div>
+      <div id="load-elapsed">Scanning batches…</div>
+      <div style="margin-top:8px;font-size:11px">
+        <button type="button" class="linkish" id="cancel-load-btn">Cancel</button>
+      </div>
+    </div>`;
+  document.getElementById("cancel-load-btn").addEventListener("click", () => {
+    abortItemsFetch();
+    content.innerHTML = '<div class="tree-empty">Load cancelled.</div>';
+    summary.textContent = "";
+  });
+  state.loadTimer = setInterval(() => {
+    const el = document.getElementById("load-elapsed");
+    if (el) el.textContent = `Scanning batches… ${((Date.now() - started) / 1000).toFixed(1)}s`;
+  }, 200);
+
+  let url = `/api/tree/${node.kind}/${encodeURIComponent(node.code)}/items`
+    + `?year=${state.year}`
+    + `&view=${state.view}`
+    + `&amount_filter=${state.amountFilter}`
+    + `&appropriation=${state.appropriation}`
+    + `&limit=${state.itemsLimit}`
+    + `&offset=${state.itemsOffset}`;
+  if (state.search) url += `&search=${encodeURIComponent(state.search)}`;
+  if (node.parent) url += `&parent=${encodeURIComponent(node.parent)}`;
+
+  try {
+    const res = await fetch(url, { signal: ac.signal });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    if (ac.signal.aborted) return;
+    abortItemsFetch();
+    state.itemsTotal = data.total_matched;
+    const secs = ((Date.now() - started) / 1000).toFixed(1);
+    const parts = [
+      `<strong>${formatNum(data.total_matched)}</strong> matching`,
+      `${secs}s`,
+    ];
+    if (state.appropriation === "aa") parts.push("automatic only");
+    if (state.appropriation === "programmed") parts.push("programmed only");
+    if (state.amountFilter === "nonzero") parts.push("non-zero");
+    if (state.amountFilter === "zero") parts.push("zero-amount");
+    if (state.search) parts.push(`“${escapeHtml(state.search)}”`);
+    summary.innerHTML = parts.join(" · ");
+    renderItemsTable(data.items);
+  } catch (err) {
+    if (err.name === "AbortError") return;
+    abortItemsFetch();
+    content.innerHTML = `<div class="tree-empty">Error: ${escapeHtml(err.message)}</div>`;
+    summary.textContent = "";
+  }
+}
+
+function renderItemsTable(items) {
+  const content = document.getElementById("items-content");
+  content.innerHTML = "";
+  if (items.length === 0) {
+    content.innerHTML = '<div class="tree-empty">No matching items.</div>';
+    return;
+  }
+
+  const tableWrap = document.createElement("div");
+  const table = document.createElement("table");
+  table.innerHTML = `
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Level</th>
+        <th>Description</th>
+        <th class="num">Amount</th>
+        <th>Region</th>
+        <th>Funding</th>
+        <th>Object</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  `;
+  const tbody = table.querySelector("tbody");
+  items.forEach(item => {
+    const tr = document.createElement("tr");
+    if ((item.amount || 0) === 0) tr.className = "zero-amount";
+    const aaBadge = item.is_automatic ? '<span class="badge aa">AA</span>' : "";
+    tr.innerHTML = `
+      <td><code class="item-id">${escapeHtml(item.id || "")}</code></td>
+      <td class="num">${item.prexc_level ?? "—"}</td>
+      <td class="description" title="${escapeHtml(item.description || "")}">${escapeHtml(item.description || "")}${aaBadge}</td>
+      <td class="num">${formatAmountP(item.amount_display_pesos)}</td>
+      <td>${escapeHtml(item.region_name || "—")}</td>
+      <td>${escapeHtml(item.funding_name || "—")}</td>
+      <td>${escapeHtml(item.object_name || "—")}</td>
+    `;
+    tr.style.cursor = "pointer";
+    tr.addEventListener("click", () => showItemDetail(item, tr));
+    tbody.appendChild(tr);
+  });
+  tableWrap.appendChild(table);
+  content.appendChild(tableWrap);
+
+  const pag = document.createElement("div");
+  pag.className = "pagination";
+  const prev = document.createElement("button");
+  prev.textContent = "← Prev";
+  prev.disabled = state.itemsOffset === 0;
+  prev.addEventListener("click", () => {
+    state.itemsOffset = Math.max(0, state.itemsOffset - state.itemsLimit);
+    state.forceLoadItems = true;
+    loadItems();
+  });
+  const next = document.createElement("button");
+  next.textContent = "Next →";
+  next.disabled = state.itemsOffset + state.itemsLimit >= state.itemsTotal;
+  next.addEventListener("click", () => {
+    state.itemsOffset += state.itemsLimit;
+    state.forceLoadItems = true;
+    loadItems();
+  });
+  const range = document.createElement("span");
+  const from = state.itemsOffset + 1;
+  const to = Math.min(state.itemsOffset + items.length, state.itemsTotal);
+  range.textContent = `${from}–${to} of ${formatNum(state.itemsTotal)}`;
+  pag.appendChild(prev);
+  pag.appendChild(range);
+  pag.appendChild(next);
+  content.appendChild(pag);
+}
+
+function showItemDetail(item) {
+  document.querySelectorAll(".item-detail").forEach(el => el.remove());
+  const detail = document.createElement("div");
+  detail.className = "item-detail";
+  const aaRow = item.is_automatic
+    ? `<dt>Classification</dt><dd><span class="badge aa">Automatic Appropriation</span></dd>`
+    : `<dt>Classification</dt><dd>Programmed</dd>`;
+  const pathLabel = state.view === "nep" ? "NEP path" : "Place path";
+  const crumb = (item.breadcrumb && item.breadcrumb.length)
+    ? `<dt>${pathLabel}</dt><dd>${escapeHtml(item.breadcrumb.filter(Boolean).join(" › "))}</dd>`
+    : "";
+  detail.innerHTML = `
+    <dl>
+      <dt>ID</dt><dd>${escapeHtml(item.id || "")}</dd>
+      <dt>Amount</dt><dd>${formatAmountP(item.amount_display_pesos)}</dd>
+      ${aaRow}
+      ${crumb}
+      <dt>PREXC FPAP ID</dt><dd>${escapeHtml(item.prexc_fpap_id || "")}</dd>
+      <dt>PREXC level</dt><dd>${item.prexc_level}</dd>
+      <dt>Organization</dt><dd>${escapeHtml(item.org_name || "")} <code>${escapeHtml(item.org_uacs_code || "")}</code></dd>
+      <dt>Division</dt><dd>${escapeHtml(item.division_name || "—")} <code>${escapeHtml(item.division_code || "")}</code></dd>
+      <dt>Region</dt><dd>${escapeHtml(item.region_name || "")} <code>${escapeHtml(item.region_code || "")}</code></dd>
+      <dt>Funding source</dt><dd>${escapeHtml(item.funding_name || "")} <code>${escapeHtml(item.funding_uacs_code || "")}</code></dd>
+      <dt>Expense object</dt><dd>${escapeHtml(item.object_name || "")} <code>${escapeHtml(item.object_uacs_code || "")}</code></dd>
+      <dt>Description</dt><dd>${escapeHtml(item.description || "")}</dd>
+    </dl>
+  `;
+  document.getElementById("items-content").appendChild(detail);
+}
+
+// ---------- Toolbar ----------
+document.getElementById("amount-filter").addEventListener("change", (e) => {
+  state.amountFilter = e.target.value;
+  state.itemsOffset = 0;
+  state.forceLoadItems = true;
+  if (state.selectedNode) loadItems();
+});
+document.getElementById("search-btn").addEventListener("click", () => {
+  state.search = document.getElementById("search-input").value.trim();
+  state.itemsOffset = 0;
+  state.forceLoadItems = true;
+  if (state.selectedNode) loadItems();
+});
+document.getElementById("search-input").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") document.getElementById("search-btn").click();
+});
+document.getElementById("reset-btn").addEventListener("click", () => {
+  state.amountFilter = "nonzero";
+  state.appropriation = "all";
+  state.search = "";
+  state.itemsOffset = 0;
+  document.getElementById("amount-filter").value = "nonzero";
+  document.getElementById("search-input").value = "";
+  document.querySelectorAll("#appropriation-toggle button").forEach(b => b.classList.remove("active"));
+  document.querySelector('#appropriation-toggle button[data-v="all"]').classList.add("active");
+  state.forceLoadItems = true;
+  if (state.selectedNode) loadItems();
+});
+
+boot();
+</script>
+
+</body>
+</html>

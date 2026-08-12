@@ -1,0 +1,34 @@
+[
+  {
+    "code": "01",
+    "simple_code": "01",
+    "description": "",
+    "classification_code": "1",
+    "uacs_code": "101",
+    "status": "Active"
+  },
+  {
+    "code": "02",
+    "simple_code": "02",
+    "description": "",
+    "classification_code": "2",
+    "uacs_code": "202",
+    "status": "Active"
+  },
+  {
+    "code": "06",
+    "simple_code": "06",
+    "description": "",
+    "classification_code": "6",
+    "uacs_code": "606",
+    "status": "Active"
+  },
+  {
+    "code": "03",
+    "simple_code": "03",
+    "description": "",
+    "classification_code": "3",
+    "uacs_code": "303",
+    "status": "Active"
+  }
+]

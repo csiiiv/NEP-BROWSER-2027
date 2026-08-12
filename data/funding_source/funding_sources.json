@@ -1,0 +1,758 @@
+[
+  {
+    "uacs_code": "10101101",
+    "description": "Specific Budgets of National Government Agencies",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "01",
+    "category_code": "101",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10401102",
+    "description": "Retirement and Life Insurance Premiums",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "01",
+    "category_code": "102",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10401103",
+    "description": "Pension under R.A. No. 2087, as amended by P.D. 1625 and R.A. No. 5059 as amended by Section 1 of EO No. 145, s. 1987",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "01",
+    "category_code": "103",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403321",
+    "description": "Fiduciary Fund for Agrarian Reform Education",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "321",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403322",
+    "description": "Agrarian Reform Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "322",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403400",
+    "description": "Agri-Agra Special Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "400",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10102151",
+    "description": "GoP Counterpart Funds",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "02",
+    "category_code": "151",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10102163",
+    "description": "International Bank for Reconstruction and Development (IBRD)",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "02",
+    "category_code": "163",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10102165",
+    "description": "International Fund for Agricultural Development (IFAD)",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "02",
+    "category_code": "165",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10102160",
+    "description": "France",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "02",
+    "category_code": "160",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403388",
+    "description": "Competitiveness Enhancement Measures Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "388",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403384",
+    "description": "Remedies Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "384",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403387",
+    "description": "Seed Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "387",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403390",
+    "description": "Livestock Promotion Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "390",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403323",
+    "description": "Agricultural Competitiveness Enhancement Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "323",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403325",
+    "description": "Wildlife Management Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "325",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403391",
+    "description": "Fisheries Management Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "391",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10102177",
+    "description": "United States",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "02",
+    "category_code": "177",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403332",
+    "description": "Collections from other production shares and miscellaneous income",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "332",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10102152",
+    "description": "Asian Development Bank",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "02",
+    "category_code": "152",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403334",
+    "description": "Integrated Protected Areas Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "334",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403335",
+    "description": "Wildlife Management Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "335",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403337",
+    "description": "Air Quality Management Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "337",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403385",
+    "description": "National Water Quality Management Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "385",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403386",
+    "description": "Area Water Quality Management Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "386",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403338",
+    "description": "Mines and Geosciences Bureau",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "338",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403399",
+    "description": "Rewards and Incentives Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "399",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403340",
+    "description": "Super Green Lane Trust Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "340",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403339",
+    "description": "Non-Intrusive Container Inspection System Project Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "339",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101254",
+    "description": "Local Government Support Fund (formerly Financial Subsidy to LGUs)",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "01",
+    "category_code": "254",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403345",
+    "description": "Insurance Commission Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "345",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403346",
+    "description": "Pre-Need Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "346",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403348",
+    "description": "DOH OSEC FDA-SAGF",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "348",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403349",
+    "description": "OSEC-BQIHS SAGF",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "349",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403350",
+    "description": "Bureau of Fire Protection",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "350",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403352",
+    "description": "Land Registration Authority",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "352",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403353",
+    "description": "Office of the Solicitor General",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "353",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403355",
+    "description": "Special Voluntary Arbitration Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "355",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403357",
+    "description": "AFP Modernization Trust Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "357",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403389",
+    "description": "National Building Code Development Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "389",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10102167",
+    "description": "Japan",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "02",
+    "category_code": "167",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10102168",
+    "description": "Korea",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "02",
+    "category_code": "168",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10102157",
+    "description": "China",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "02",
+    "category_code": "157",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10404163",
+    "description": "International Bank for Reconstruction and Development (IBRD)",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "04",
+    "category_code": "163",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101278",
+    "description": "Loans",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "01",
+    "category_code": "278",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403361",
+    "description": "Tourism Development Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "361",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403362",
+    "description": "Micro, Small and Medium Enterprise Development Council Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "362",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10404165",
+    "description": "International Fund for Agricultural Development (IFAD)",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "04",
+    "category_code": "165",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403367",
+    "description": "Interest Earnings of the Endowment Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "367",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403369",
+    "description": "Higher Education Development Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "369",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403370",
+    "description": "DDB SAGF",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "370",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403372",
+    "description": "GAB SAGF",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "372",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403374",
+    "description": "Share on the annual revenue collection of MTRCB - Sec. 20 of P.D. 1986",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "374",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403375",
+    "description": "National Endowment Fund for Culture and Arts",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "375",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403377",
+    "description": "National Sports Development Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "377",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403397",
+    "description": "Philippine Space Development Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "397",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403107",
+    "description": "Military Camps Sales Proceeds",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "107",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101277",
+    "description": "Subsidies",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "01",
+    "category_code": "277",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403380",
+    "description": "Tobacco Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "380",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403381",
+    "description": "PCA SAGF",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "381",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101276",
+    "description": "Equity Contribution",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "01",
+    "category_code": "276",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403331",
+    "description": "Malampaya Gas Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "331",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403382",
+    "description": "Tourism Promotions Board Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "382",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403379",
+    "description": "CCP SAGF",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "379",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403392",
+    "description": "Free Public Internet Access Fund (FPIAF)",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "392",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403364",
+    "description": "Seat Belt Use Fund (LTO)",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "364",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10102181",
+    "description": "Asian Infrastructure Investment Bank (AIIB)",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "02",
+    "category_code": "181",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403365",
+    "description": "MARINA Tonnage Fees",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "365",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403366",
+    "description": "National Civil Aviation Security Committee (NCASC)",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "366",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403398",
+    "description": "Verification Fee Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "03",
+    "category_code": "398",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101252",
+    "description": "Special Shares of LGUs in the Proceeds of National Taxes",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "01",
+    "category_code": "252",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101255",
+    "description": "Special Shares of LGUs in the Proceeds of Fire Code Fees",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "01",
+    "category_code": "255",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101257",
+    "description": "Bangsamoro Autonomous Region in Muslim Mindanao (BARMM)",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "01",
+    "category_code": "257",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101401",
+    "description": "National Disaster Risk Reduction and Management Fund ( Calamity Fund )",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "01",
+    "category_code": "401",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101402",
+    "description": "Contingent Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "01",
+    "category_code": "402",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101406",
+    "description": "Miscellaneous Personnel Benefits Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "01",
+    "category_code": "406",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101407",
+    "description": "Pension and Gratuity Fund",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "01",
+    "category_code": "407",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101412",
+    "description": "BSGC - Others",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "01",
+    "category_code": "412",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101416",
+    "description": "Revised AFP Modernization Program",
+    "fund_cluster_code": "10",
+    "financing_source_code": "1",
+    "authorization_code": "01",
+    "category_code": "416",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10401105",
+    "description": "Customs duties and taxes, including tax expenditures",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "01",
+    "category_code": "105",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10401110",
+    "description": "Debt Interest Payments",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "01",
+    "category_code": "110",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10401257",
+    "description": "Bangsamoro Autonomous Region in Muslim Mindanao (BARMM)",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "01",
+    "category_code": "257",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10401258",
+    "description": "National Tax Allotment",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "01",
+    "category_code": "258",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10401280",
+    "description": "Net Lending",
+    "fund_cluster_code": "10",
+    "financing_source_code": "4",
+    "authorization_code": "01",
+    "category_code": "280",
+    "status": "Active"
+  }
+]

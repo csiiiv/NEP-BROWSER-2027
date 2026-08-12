@@ -1,0 +1,117 @@
+{
+  "metadata": {
+    "budget_type": "NEP",
+    "fiscal_year": "2026",
+    "total_records": 771594,
+    "total_amount": 13586324000.0,
+    "conversion_date": "2026-08-12T23:55:57.700426",
+    "source_file": "NEP-FY2026.json",
+    "source_sha256": "9bead45d5075780d217badd9a61f6c101ad42f027dda3b79f0299400024e2408"
+  },
+  "batch_info": {
+    "batch_size": 100000,
+    "total_batches": 8,
+    "batch_files": [
+      "nep_2026_batch_0001.json",
+      "nep_2026_batch_0002.json",
+      "nep_2026_batch_0003.json",
+      "nep_2026_batch_0004.json",
+      "nep_2026_batch_0005.json",
+      "nep_2026_batch_0006.json",
+      "nep_2026_batch_0007.json",
+      "nep_2026_batch_0008.json"
+    ]
+  },
+  "statistics": {
+    "rows_with_org_uacs": 568539,
+    "rows_with_funding_uacs": 568563,
+    "rows_with_object_uacs": 568598,
+    "rows_with_region": 568557,
+    "rows_with_division": 338497,
+    "rows_with_nonzero_amount": 506751,
+    "coverage": {
+      "org_pct": 73.68369894011617,
+      "funding_pct": 73.68680938420984,
+      "object_pct": 73.69134544851308,
+      "region_pct": 73.68603177318641,
+      "division_pct": 43.86983309875401,
+      "amount_pct": 65.67586062100017
+    }
+  },
+  "unique_counts": {
+    "departments": 37,
+    "agencies": 418,
+    "operating_unit_classes": 21,
+    "operating_units": 13291,
+    "organizations": 13291,
+    "divisions": 240,
+    "funding_sources": 85,
+    "fund_categories": 85,
+    "classifications": 21,
+    "sub_classes": 5,
+    "groups": 28,
+    "objects": 135,
+    "sub_objects": 138,
+    "regions": 19
+  },
+  "code_anomalies": {
+    "org": {},
+    "funding": {
+      "len_6": 35
+    },
+    "object": {},
+    "region": {
+      "value_00": 41
+    }
+  },
+  "amount_analysis": {
+    "note": "AMT values are in THOUSANDS of pesos (per source NEP title row). Multiply by 1,000 for actual pesos.",
+    "warning": "Amounts are NOT additive across PREXC_LEVELs. Levels 0, 3, and 7 contain overlapping totals (parent PAPs roll up to their children). metadata.total_amount sums ALL rows and should NOT be used as a budget total -- it double-counts.",
+    "amounts_by_prexc_level": {
+      "0": {
+        "count": 1,
+        "sum_in_thousands": 6793162000.0,
+        "meaning": "Top grand-total row(s)"
+      },
+      "1": {
+        "count": 1107,
+        "sum_in_thousands": 0.0,
+        "meaning": "Cost-structure / sector outcome headers"
+      },
+      "2": {
+        "count": 677,
+        "sum_in_thousands": 0.0,
+        "meaning": "Organizational outcome headers"
+      },
+      "3": {
+        "count": 971,
+        "sum_in_thousands": 1298992070.0,
+        "meaning": "Program totals (includes lump-sum SPFs not itemized lower)"
+      },
+      "4": {
+        "count": 214,
+        "sum_in_thousands": 0.0,
+        "meaning": "Sub-program headers"
+      },
+      "5": {
+        "count": 831,
+        "sum_in_thousands": 0.0,
+        "meaning": "Activity-type headers"
+      },
+      "6": {
+        "count": 940,
+        "sum_in_thousands": 0.0,
+        "meaning": "Activity headers"
+      },
+      "7": {
+        "count": 766853,
+        "sum_in_thousands": 5494169930.0,
+        "meaning": "Lowest-level line items"
+      }
+    },
+    "recommended_filter_for_line_items": "prexc_level == 7",
+    "line_item_total_in_thousands": 5494169930.0,
+    "line_item_total_in_pesos": 5494169930000.0,
+    "line_item_count": 766853
+  }
+}

@@ -1,0 +1,842 @@
+[
+  {
+    "uacs_code": "10101101",
+    "code": "101",
+    "description": "Specific Budgets of National Government Agencies",
+    "sub_category": "Specific Budgets of National Government Agencies",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "New General Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10401102",
+    "code": "102",
+    "description": "Retirement and Life Insurance Premiums",
+    "sub_category": "Retirement and Life Insurance Premiums",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "New General Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10401103",
+    "code": "103",
+    "description": "Pension under R.A. No. 2087, as amended by P.D. 1625 and R.A. No. 5059 as amended by Section 1 of EO No. 145, s. 1987",
+    "sub_category": "Pension under R.A. No. 2087, as amended by P.D. 1625 and R.A. No. 5059 as amended by Section 1 of EO No. 145, s. 1987",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "New General Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403321",
+    "code": "321",
+    "description": "Fiduciary Fund for Agrarian Reform Education",
+    "sub_category": "Fiduciary Fund for Agrarian Reform Education",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403322",
+    "code": "322",
+    "description": "Agrarian Reform Fund",
+    "sub_category": "Agrarian Reform Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403400",
+    "code": "400",
+    "description": "Agri-Agra Special Fund",
+    "sub_category": "Agri-Agra Special Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10102151",
+    "code": "151",
+    "description": "GoP Counterpart Funds",
+    "sub_category": "GoP Counterpart Funds",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "Continuing Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10102163",
+    "code": "163",
+    "description": "International Bank for Reconstruction and Development (IBRD)",
+    "sub_category": "International Bank for Reconstruction and Development (IBRD)",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "Continuing Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10102165",
+    "code": "165",
+    "description": "International Fund for Agricultural Development (IFAD)",
+    "sub_category": "International Fund for Agricultural Development (IFAD)",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "Continuing Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10102160",
+    "code": "160",
+    "description": "France",
+    "sub_category": "France",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "Continuing Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403388",
+    "code": "388",
+    "description": "Competitiveness Enhancement Measures Fund",
+    "sub_category": "Competitiveness Enhancement Measures Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403384",
+    "code": "384",
+    "description": "Remedies Fund",
+    "sub_category": "Remedies Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403387",
+    "code": "387",
+    "description": "Seed Fund",
+    "sub_category": "Seed Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403390",
+    "code": "390",
+    "description": "Livestock Promotion Fund",
+    "sub_category": "Livestock Promotion Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403323",
+    "code": "323",
+    "description": "Agricultural Competitiveness Enhancement Fund",
+    "sub_category": "Agricultural Competitiveness Enhancement Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403325",
+    "code": "325",
+    "description": "Wildlife Management Fund",
+    "sub_category": "Wildlife Management Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403391",
+    "code": "391",
+    "description": "Fisheries Management Fund",
+    "sub_category": "Fisheries Management Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10102177",
+    "code": "177",
+    "description": "United States",
+    "sub_category": "United States",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "Continuing Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403332",
+    "code": "332",
+    "description": "Collections from other production shares and miscellaneous income",
+    "sub_category": "Collections from other production shares and miscellaneous income",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10102152",
+    "code": "152",
+    "description": "Asian Development Bank",
+    "sub_category": "Asian Development Bank",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "Continuing Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403334",
+    "code": "334",
+    "description": "Integrated Protected Areas Fund",
+    "sub_category": "Integrated Protected Areas Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403335",
+    "code": "335",
+    "description": "Wildlife Management Fund",
+    "sub_category": "Wildlife Management Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403337",
+    "code": "337",
+    "description": "Air Quality Management Fund",
+    "sub_category": "Air Quality Management Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403385",
+    "code": "385",
+    "description": "National Water Quality Management Fund",
+    "sub_category": "National Water Quality Management Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403386",
+    "code": "386",
+    "description": "Area Water Quality Management Fund",
+    "sub_category": "Area Water Quality Management Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403338",
+    "code": "338",
+    "description": "Mines and Geosciences Bureau",
+    "sub_category": "Mines and Geosciences Bureau",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403399",
+    "code": "399",
+    "description": "Rewards and Incentives Fund",
+    "sub_category": "Rewards and Incentives Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403340",
+    "code": "340",
+    "description": "Super Green Lane Trust Fund",
+    "sub_category": "Super Green Lane Trust Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403339",
+    "code": "339",
+    "description": "Non-Intrusive Container Inspection System Project Fund",
+    "sub_category": "Non-Intrusive Container Inspection System Project Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101254",
+    "code": "254",
+    "description": "Local Government Support Fund (formerly Financial Subsidy to LGUs)",
+    "sub_category": "Local Government Support Fund (formerly Financial Subsidy to LGUs)",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "New General Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403345",
+    "code": "345",
+    "description": "Insurance Commission Fund",
+    "sub_category": "Insurance Commission Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403346",
+    "code": "346",
+    "description": "Pre-Need Fund",
+    "sub_category": "Pre-Need Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403348",
+    "code": "348",
+    "description": "DOH OSEC FDA-SAGF",
+    "sub_category": "DOH OSEC FDA-SAGF",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403349",
+    "code": "349",
+    "description": "OSEC-BQIHS SAGF",
+    "sub_category": "OSEC-BQIHS SAGF",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403350",
+    "code": "350",
+    "description": "Bureau of Fire Protection",
+    "sub_category": "Bureau of Fire Protection",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403352",
+    "code": "352",
+    "description": "Land Registration Authority",
+    "sub_category": "Land Registration Authority",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403353",
+    "code": "353",
+    "description": "Office of the Solicitor General",
+    "sub_category": "Office of the Solicitor General",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403355",
+    "code": "355",
+    "description": "Special Voluntary Arbitration Fund",
+    "sub_category": "Special Voluntary Arbitration Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403357",
+    "code": "357",
+    "description": "AFP Modernization Trust Fund",
+    "sub_category": "AFP Modernization Trust Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403389",
+    "code": "389",
+    "description": "National Building Code Development Fund",
+    "sub_category": "National Building Code Development Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10102167",
+    "code": "167",
+    "description": "Japan",
+    "sub_category": "Japan",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "Continuing Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10102168",
+    "code": "168",
+    "description": "Korea",
+    "sub_category": "Korea",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "Continuing Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10102157",
+    "code": "157",
+    "description": "China",
+    "sub_category": "China",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "Continuing Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10404163",
+    "code": "163",
+    "description": "International Bank for Reconstruction and Development (IBRD)",
+    "sub_category": "International Bank for Reconstruction and Development (IBRD)",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Automatic Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101278",
+    "code": "278",
+    "description": "Loans",
+    "sub_category": "Loans",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "New General Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403361",
+    "code": "361",
+    "description": "Tourism Development Fund",
+    "sub_category": "Tourism Development Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403362",
+    "code": "362",
+    "description": "Micro, Small and Medium Enterprise Development Council Fund",
+    "sub_category": "Micro, Small and Medium Enterprise Development Council Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10404165",
+    "code": "165",
+    "description": "International Fund for Agricultural Development (IFAD)",
+    "sub_category": "International Fund for Agricultural Development (IFAD)",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Automatic Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403367",
+    "code": "367",
+    "description": "Interest Earnings of the Endowment Fund",
+    "sub_category": "Interest Earnings of the Endowment Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403369",
+    "code": "369",
+    "description": "Higher Education Development Fund",
+    "sub_category": "Higher Education Development Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403370",
+    "code": "370",
+    "description": "DDB SAGF",
+    "sub_category": "DDB SAGF",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403372",
+    "code": "372",
+    "description": "GAB SAGF",
+    "sub_category": "GAB SAGF",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403374",
+    "code": "374",
+    "description": "Share on the annual revenue collection of MTRCB - Sec. 20 of P.D. 1986",
+    "sub_category": "Share on the annual revenue collection of MTRCB - Sec. 20 of P.D. 1986",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403375",
+    "code": "375",
+    "description": "National Endowment Fund for Culture and Arts",
+    "sub_category": "National Endowment Fund for Culture and Arts",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403377",
+    "code": "377",
+    "description": "National Sports Development Fund",
+    "sub_category": "National Sports Development Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403397",
+    "code": "397",
+    "description": "Philippine Space Development Fund",
+    "sub_category": "Philippine Space Development Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403107",
+    "code": "107",
+    "description": "Military Camps Sales Proceeds",
+    "sub_category": "Military Camps Sales Proceeds",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101277",
+    "code": "277",
+    "description": "Subsidies",
+    "sub_category": "Subsidies",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "New General Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403380",
+    "code": "380",
+    "description": "Tobacco Fund",
+    "sub_category": "Tobacco Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403381",
+    "code": "381",
+    "description": "PCA SAGF",
+    "sub_category": "PCA SAGF",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101276",
+    "code": "276",
+    "description": "Equity Contribution",
+    "sub_category": "Equity Contribution",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "New General Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403331",
+    "code": "331",
+    "description": "Malampaya Gas Fund",
+    "sub_category": "Malampaya Gas Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403382",
+    "code": "382",
+    "description": "Tourism Promotions Board Fund",
+    "sub_category": "Tourism Promotions Board Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403379",
+    "code": "379",
+    "description": "CCP SAGF",
+    "sub_category": "CCP SAGF",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403392",
+    "code": "392",
+    "description": "Free Public Internet Access Fund (FPIAF)",
+    "sub_category": "Free Public Internet Access Fund (FPIAF)",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403364",
+    "code": "364",
+    "description": "Seat Belt Use Fund (LTO)",
+    "sub_category": "Seat Belt Use Fund (LTO)",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10102181",
+    "code": "181",
+    "description": "Asian Infrastructure Investment Bank (AIIB)",
+    "sub_category": "Asian Infrastructure Investment Bank (AIIB)",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "Continuing Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403365",
+    "code": "365",
+    "description": "MARINA Tonnage Fees",
+    "sub_category": "MARINA Tonnage Fees",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403366",
+    "code": "366",
+    "description": "National Civil Aviation Security Committee (NCASC)",
+    "sub_category": "National Civil Aviation Security Committee (NCASC)",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10403398",
+    "code": "398",
+    "description": "Verification Fee Fund",
+    "sub_category": "Verification Fee Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "Supplemental Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101252",
+    "code": "252",
+    "description": "Special Shares of LGUs in the Proceeds of National Taxes",
+    "sub_category": "Special Shares of LGUs in the Proceeds of National Taxes",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "New General Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101255",
+    "code": "255",
+    "description": "Special Shares of LGUs in the Proceeds of Fire Code Fees",
+    "sub_category": "Special Shares of LGUs in the Proceeds of Fire Code Fees",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "New General Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101257",
+    "code": "257",
+    "description": "Bangsamoro Autonomous Region in Muslim Mindanao (BARMM)",
+    "sub_category": "Bangsamoro Autonomous Region in Muslim Mindanao (BARMM)",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "New General Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101401",
+    "code": "401",
+    "description": "National Disaster Risk Reduction and Management Fund ( Calamity Fund )",
+    "sub_category": "National Disaster Risk Reduction and Management Fund ( Calamity Fund )",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "New General Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101402",
+    "code": "402",
+    "description": "Contingent Fund",
+    "sub_category": "Contingent Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "New General Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101406",
+    "code": "406",
+    "description": "Miscellaneous Personnel Benefits Fund",
+    "sub_category": "Miscellaneous Personnel Benefits Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "New General Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101407",
+    "code": "407",
+    "description": "Pension and Gratuity Fund",
+    "sub_category": "Pension and Gratuity Fund",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "New General Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101412",
+    "code": "412",
+    "description": "BSGC - Others",
+    "sub_category": "BSGC - Others",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "New General Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10101416",
+    "code": "416",
+    "description": "Revised AFP Modernization Program",
+    "sub_category": "Revised AFP Modernization Program",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "General Fund",
+    "authorization": "New General Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10401105",
+    "code": "105",
+    "description": "Customs duties and taxes, including tax expenditures",
+    "sub_category": "Customs duties and taxes, including tax expenditures",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "New General Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10401110",
+    "code": "110",
+    "description": "Debt Interest Payments",
+    "sub_category": "Debt Interest Payments",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "New General Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10401257",
+    "code": "257",
+    "description": "Bangsamoro Autonomous Region in Muslim Mindanao (BARMM)",
+    "sub_category": "Bangsamoro Autonomous Region in Muslim Mindanao (BARMM)",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "New General Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10401258",
+    "code": "258",
+    "description": "National Tax Allotment",
+    "sub_category": "National Tax Allotment",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "New General Appropriations",
+    "status": "Active"
+  },
+  {
+    "uacs_code": "10401280",
+    "code": "280",
+    "description": "Net Lending",
+    "sub_category": "Net Lending",
+    "fund_cluster": "Regular Agency Fund (NEP encoding)",
+    "financing_source": "(NEP export - sub-category 4)",
+    "authorization": "New General Appropriations",
+    "status": "Active"
+  }
+]

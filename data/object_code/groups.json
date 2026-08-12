@@ -1,0 +1,254 @@
+[
+  {
+    "code": "01",
+    "full_code": "50101",
+    "description": "",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50101",
+    "status": "Active"
+  },
+  {
+    "code": "02",
+    "full_code": "50102",
+    "description": "",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50102",
+    "status": "Active"
+  },
+  {
+    "code": "03",
+    "full_code": "50103",
+    "description": "",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50103",
+    "status": "Active"
+  },
+  {
+    "code": "04",
+    "full_code": "50104",
+    "description": "",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50104",
+    "status": "Active"
+  },
+  {
+    "code": "01",
+    "full_code": "50201",
+    "description": "",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50201",
+    "status": "Active"
+  },
+  {
+    "code": "02",
+    "full_code": "50202",
+    "description": "",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50202",
+    "status": "Active"
+  },
+  {
+    "code": "03",
+    "full_code": "50203",
+    "description": "",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50203",
+    "status": "Active"
+  },
+  {
+    "code": "04",
+    "full_code": "50204",
+    "description": "",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50204",
+    "status": "Active"
+  },
+  {
+    "code": "05",
+    "full_code": "50205",
+    "description": "",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50205",
+    "status": "Active"
+  },
+  {
+    "code": "10",
+    "full_code": "50210",
+    "description": "",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50210",
+    "status": "Active"
+  },
+  {
+    "code": "11",
+    "full_code": "50211",
+    "description": "",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50211",
+    "status": "Active"
+  },
+  {
+    "code": "12",
+    "full_code": "50212",
+    "description": "",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50212",
+    "status": "Active"
+  },
+  {
+    "code": "13",
+    "full_code": "50213",
+    "description": "",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50213",
+    "status": "Active"
+  },
+  {
+    "code": "15",
+    "full_code": "50215",
+    "description": "",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50215",
+    "status": "Active"
+  },
+  {
+    "code": "99",
+    "full_code": "50299",
+    "description": "",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50299",
+    "status": "Active"
+  },
+  {
+    "code": "04",
+    "full_code": "50604",
+    "description": "",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50604",
+    "status": "Active"
+  },
+  {
+    "code": "07",
+    "full_code": "50207",
+    "description": "",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50207",
+    "status": "Active"
+  },
+  {
+    "code": "06",
+    "full_code": "50206",
+    "description": "",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50206",
+    "status": "Active"
+  },
+  {
+    "code": "06",
+    "full_code": "50606",
+    "description": "",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50606",
+    "status": "Active"
+  },
+  {
+    "code": "14",
+    "full_code": "50214",
+    "description": "",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50214",
+    "status": "Active"
+  },
+  {
+    "code": "16",
+    "full_code": "50216",
+    "description": "",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50216",
+    "status": "Active"
+  },
+  {
+    "code": "05",
+    "full_code": "50605",
+    "description": "",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50605",
+    "status": "Active"
+  },
+  {
+    "code": "02",
+    "full_code": "50602",
+    "description": "",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50602",
+    "status": "Active"
+  },
+  {
+    "code": "01",
+    "full_code": "50301",
+    "description": "",
+    "sub_class_code": "03",
+    "classification_code": "3",
+    "uacs_code": "50301",
+    "status": "Active"
+  },
+  {
+    "code": "09",
+    "full_code": "50209",
+    "description": "",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50209",
+    "status": "Active"
+  },
+  {
+    "code": "03",
+    "full_code": "50603",
+    "description": "",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50603",
+    "status": "Active"
+  },
+  {
+    "code": "01",
+    "full_code": "50601",
+    "description": "",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50601",
+    "status": "Active"
+  },
+  {
+    "code": "08",
+    "full_code": "50208",
+    "description": "",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50208",
+    "status": "Active"
+  }
+]

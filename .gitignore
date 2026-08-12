@@ -1,0 +1,27 @@
+# Sources & intermediates (regenerate locally)
+*.xlsx
+*.xls
+scripts/nep-gaa/input/
+archive/*.csv
+
+# Plain budget batches — commit gzipped only
+data/budget/*/items/*.json
+!data/budget/*/items/*.json.gz
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+
+*.pdf
+

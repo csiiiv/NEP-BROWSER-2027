@@ -1,0 +1,26 @@
+[
+  {
+    "code": "1",
+    "description": "Personnel Services",
+    "uacs_code": "1",
+    "status": "Active"
+  },
+  {
+    "code": "2",
+    "description": "Maintenance and Other Operating Expenses",
+    "uacs_code": "2",
+    "status": "Active"
+  },
+  {
+    "code": "6",
+    "description": "Capital Outlays",
+    "uacs_code": "6",
+    "status": "Active"
+  },
+  {
+    "code": "3",
+    "description": "Financial Expenses",
+    "uacs_code": "3",
+    "status": "Active"
+  }
+]

@@ -1,0 +1,13 @@
+[
+  {
+    "entity": "funding_source",
+    "total_fund_clusters": 8,
+    "total_financing_sources": 4,
+    "total_authorizations": 8,
+    "total_fund_categories": 84,
+    "total_funding_sources": 84,
+    "source_clusters_etc": "FY2026 reference (stable, hardcoded)",
+    "source_funding_sources": "derived from NEP-FY2027",
+    "conversion_date": "2026-08-12T23:56:51.883228"
+  }
+]

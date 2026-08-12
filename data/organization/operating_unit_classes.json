@@ -1,0 +1,107 @@
+[
+  {
+    "code": "00",
+    "description": "",
+    "status": "Active"
+  },
+  {
+    "code": "01",
+    "description": "Central Office",
+    "status": "Active"
+  },
+  {
+    "code": "03",
+    "description": "Provincial Office",
+    "status": "Active"
+  },
+  {
+    "code": "05",
+    "description": "Municipal Office",
+    "status": "Active"
+  },
+  {
+    "code": "02",
+    "description": "Regional Office",
+    "status": "Active"
+  },
+  {
+    "code": "08",
+    "description": "Hospital",
+    "status": "Active"
+  },
+  {
+    "code": "09",
+    "description": "School",
+    "status": "Active"
+  },
+  {
+    "code": "04",
+    "description": "City Office",
+    "status": "Active"
+  },
+  {
+    "code": "10",
+    "description": "Research Institution",
+    "status": "Active"
+  },
+  {
+    "code": "11",
+    "description": "Training Center",
+    "status": "Active"
+  },
+  {
+    "code": "13",
+    "description": "Production Unit",
+    "status": "Active"
+  },
+  {
+    "code": "15",
+    "description": "Resettlement Area",
+    "status": "Active"
+  },
+  {
+    "code": "14",
+    "description": "Service Center",
+    "status": "Active"
+  },
+  {
+    "code": "25",
+    "description": "Other Infrastructure",
+    "status": "Active"
+  },
+  {
+    "code": "17",
+    "description": "Irrigation System",
+    "status": "Active"
+  },
+  {
+    "code": "07",
+    "description": "Branch Office",
+    "status": "Active"
+  },
+  {
+    "code": "16",
+    "description": "Dam/Reservoir",
+    "status": "Active"
+  },
+  {
+    "code": "18",
+    "description": "Power Plant",
+    "status": "Active"
+  },
+  {
+    "code": "21",
+    "description": "Port/Harbor",
+    "status": "Active"
+  },
+  {
+    "code": "19",
+    "description": "Transmission Line",
+    "status": "Active"
+  },
+  {
+    "code": "20",
+    "description": "Substation",
+    "status": "Active"
+  }
+]

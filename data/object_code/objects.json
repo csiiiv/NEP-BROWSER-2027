@@ -1,0 +1,1362 @@
+[
+  {
+    "code": "010",
+    "full_code": "50101010",
+    "description": "",
+    "group_code": "01",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50101010",
+    "status": "Active"
+  },
+  {
+    "code": "020",
+    "full_code": "50101020",
+    "description": "",
+    "group_code": "01",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50101020",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50102010",
+    "description": "",
+    "group_code": "02",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50102010",
+    "status": "Active"
+  },
+  {
+    "code": "020",
+    "full_code": "50102020",
+    "description": "",
+    "group_code": "02",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50102020",
+    "status": "Active"
+  },
+  {
+    "code": "030",
+    "full_code": "50102030",
+    "description": "",
+    "group_code": "02",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50102030",
+    "status": "Active"
+  },
+  {
+    "code": "040",
+    "full_code": "50102040",
+    "description": "",
+    "group_code": "02",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50102040",
+    "status": "Active"
+  },
+  {
+    "code": "080",
+    "full_code": "50102080",
+    "description": "",
+    "group_code": "02",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50102080",
+    "status": "Active"
+  },
+  {
+    "code": "100",
+    "full_code": "50102100",
+    "description": "",
+    "group_code": "02",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50102100",
+    "status": "Active"
+  },
+  {
+    "code": "140",
+    "full_code": "50102140",
+    "description": "",
+    "group_code": "02",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50102140",
+    "status": "Active"
+  },
+  {
+    "code": "150",
+    "full_code": "50102150",
+    "description": "",
+    "group_code": "02",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50102150",
+    "status": "Active"
+  },
+  {
+    "code": "160",
+    "full_code": "50102160",
+    "description": "",
+    "group_code": "02",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50102160",
+    "status": "Active"
+  },
+  {
+    "code": "990",
+    "full_code": "50102990",
+    "description": "",
+    "group_code": "02",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50102990",
+    "status": "Active"
+  },
+  {
+    "code": "020",
+    "full_code": "50103020",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50103020",
+    "status": "Active"
+  },
+  {
+    "code": "030",
+    "full_code": "50103030",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50103030",
+    "status": "Active"
+  },
+  {
+    "code": "040",
+    "full_code": "50103040",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50103040",
+    "status": "Active"
+  },
+  {
+    "code": "990",
+    "full_code": "50104990",
+    "description": "",
+    "group_code": "04",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50104990",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50201010",
+    "description": "",
+    "group_code": "01",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50201010",
+    "status": "Active"
+  },
+  {
+    "code": "020",
+    "full_code": "50201020",
+    "description": "",
+    "group_code": "01",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50201020",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50202010",
+    "description": "",
+    "group_code": "02",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50202010",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50203010",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50203010",
+    "status": "Active"
+  },
+  {
+    "code": "020",
+    "full_code": "50203020",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50203020",
+    "status": "Active"
+  },
+  {
+    "code": "080",
+    "full_code": "50203080",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50203080",
+    "status": "Active"
+  },
+  {
+    "code": "090",
+    "full_code": "50203090",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50203090",
+    "status": "Active"
+  },
+  {
+    "code": "120",
+    "full_code": "50203120",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50203120",
+    "status": "Active"
+  },
+  {
+    "code": "210",
+    "full_code": "50203210",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50203210",
+    "status": "Active"
+  },
+  {
+    "code": "220",
+    "full_code": "50203220",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50203220",
+    "status": "Active"
+  },
+  {
+    "code": "990",
+    "full_code": "50203990",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50203990",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50204010",
+    "description": "",
+    "group_code": "04",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50204010",
+    "status": "Active"
+  },
+  {
+    "code": "020",
+    "full_code": "50204020",
+    "description": "",
+    "group_code": "04",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50204020",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50205010",
+    "description": "",
+    "group_code": "05",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50205010",
+    "status": "Active"
+  },
+  {
+    "code": "020",
+    "full_code": "50205020",
+    "description": "",
+    "group_code": "05",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50205020",
+    "status": "Active"
+  },
+  {
+    "code": "030",
+    "full_code": "50205030",
+    "description": "",
+    "group_code": "05",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50205030",
+    "status": "Active"
+  },
+  {
+    "code": "040",
+    "full_code": "50205040",
+    "description": "",
+    "group_code": "05",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50205040",
+    "status": "Active"
+  },
+  {
+    "code": "030",
+    "full_code": "50210030",
+    "description": "",
+    "group_code": "10",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50210030",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50211010",
+    "description": "",
+    "group_code": "11",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50211010",
+    "status": "Active"
+  },
+  {
+    "code": "020",
+    "full_code": "50211020",
+    "description": "",
+    "group_code": "11",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50211020",
+    "status": "Active"
+  },
+  {
+    "code": "030",
+    "full_code": "50211030",
+    "description": "",
+    "group_code": "11",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50211030",
+    "status": "Active"
+  },
+  {
+    "code": "990",
+    "full_code": "50211990",
+    "description": "",
+    "group_code": "11",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50211990",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50212010",
+    "description": "",
+    "group_code": "12",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50212010",
+    "status": "Active"
+  },
+  {
+    "code": "020",
+    "full_code": "50212020",
+    "description": "",
+    "group_code": "12",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50212020",
+    "status": "Active"
+  },
+  {
+    "code": "030",
+    "full_code": "50212030",
+    "description": "",
+    "group_code": "12",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50212030",
+    "status": "Active"
+  },
+  {
+    "code": "990",
+    "full_code": "50212990",
+    "description": "",
+    "group_code": "12",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50212990",
+    "status": "Active"
+  },
+  {
+    "code": "040",
+    "full_code": "50213040",
+    "description": "",
+    "group_code": "13",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50213040",
+    "status": "Active"
+  },
+  {
+    "code": "050",
+    "full_code": "50213050",
+    "description": "",
+    "group_code": "13",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50213050",
+    "status": "Active"
+  },
+  {
+    "code": "060",
+    "full_code": "50213060",
+    "description": "",
+    "group_code": "13",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50213060",
+    "status": "Active"
+  },
+  {
+    "code": "070",
+    "full_code": "50213070",
+    "description": "",
+    "group_code": "13",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50213070",
+    "status": "Active"
+  },
+  {
+    "code": "990",
+    "full_code": "50213990",
+    "description": "",
+    "group_code": "13",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50213990",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50215010",
+    "description": "",
+    "group_code": "15",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50215010",
+    "status": "Active"
+  },
+  {
+    "code": "020",
+    "full_code": "50215020",
+    "description": "",
+    "group_code": "15",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50215020",
+    "status": "Active"
+  },
+  {
+    "code": "030",
+    "full_code": "50215030",
+    "description": "",
+    "group_code": "15",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50215030",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50299010",
+    "description": "",
+    "group_code": "99",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50299010",
+    "status": "Active"
+  },
+  {
+    "code": "020",
+    "full_code": "50299020",
+    "description": "",
+    "group_code": "99",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50299020",
+    "status": "Active"
+  },
+  {
+    "code": "030",
+    "full_code": "50299030",
+    "description": "",
+    "group_code": "99",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50299030",
+    "status": "Active"
+  },
+  {
+    "code": "040",
+    "full_code": "50299040",
+    "description": "",
+    "group_code": "99",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50299040",
+    "status": "Active"
+  },
+  {
+    "code": "050",
+    "full_code": "50299050",
+    "description": "",
+    "group_code": "99",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50299050",
+    "status": "Active"
+  },
+  {
+    "code": "060",
+    "full_code": "50299060",
+    "description": "",
+    "group_code": "99",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50299060",
+    "status": "Active"
+  },
+  {
+    "code": "070",
+    "full_code": "50299070",
+    "description": "",
+    "group_code": "99",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50299070",
+    "status": "Active"
+  },
+  {
+    "code": "990",
+    "full_code": "50299990",
+    "description": "",
+    "group_code": "99",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50299990",
+    "status": "Active"
+  },
+  {
+    "code": "050",
+    "full_code": "50604050",
+    "description": "",
+    "group_code": "04",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50604050",
+    "status": "Active"
+  },
+  {
+    "code": "060",
+    "full_code": "50604060",
+    "description": "",
+    "group_code": "04",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50604060",
+    "status": "Active"
+  },
+  {
+    "code": "070",
+    "full_code": "50604070",
+    "description": "",
+    "group_code": "04",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50604070",
+    "status": "Active"
+  },
+  {
+    "code": "090",
+    "full_code": "50604090",
+    "description": "",
+    "group_code": "04",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50604090",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50103010",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50103010",
+    "status": "Active"
+  },
+  {
+    "code": "030",
+    "full_code": "50104030",
+    "description": "",
+    "group_code": "04",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50104030",
+    "status": "Active"
+  },
+  {
+    "code": "050",
+    "full_code": "50103050",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50103050",
+    "status": "Active"
+  },
+  {
+    "code": "070",
+    "full_code": "50203070",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50203070",
+    "status": "Active"
+  },
+  {
+    "code": "090",
+    "full_code": "50213090",
+    "description": "",
+    "group_code": "13",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50213090",
+    "status": "Active"
+  },
+  {
+    "code": "100",
+    "full_code": "50604100",
+    "description": "",
+    "group_code": "04",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50604100",
+    "status": "Active"
+  },
+  {
+    "code": "210",
+    "full_code": "50213210",
+    "description": "",
+    "group_code": "13",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50213210",
+    "status": "Active"
+  },
+  {
+    "code": "220",
+    "full_code": "50213220",
+    "description": "",
+    "group_code": "13",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50213220",
+    "status": "Active"
+  },
+  {
+    "code": "050",
+    "full_code": "50102050",
+    "description": "",
+    "group_code": "02",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50102050",
+    "status": "Active"
+  },
+  {
+    "code": "060",
+    "full_code": "50102060",
+    "description": "",
+    "group_code": "02",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50102060",
+    "status": "Active"
+  },
+  {
+    "code": "130",
+    "full_code": "50102130",
+    "description": "",
+    "group_code": "02",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50102130",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50207010",
+    "description": "",
+    "group_code": "07",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50207010",
+    "status": "Active"
+  },
+  {
+    "code": "020",
+    "full_code": "50202020",
+    "description": "",
+    "group_code": "02",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50202020",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50206010",
+    "description": "",
+    "group_code": "06",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50206010",
+    "status": "Active"
+  },
+  {
+    "code": "020",
+    "full_code": "50206020",
+    "description": "",
+    "group_code": "06",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50206020",
+    "status": "Active"
+  },
+  {
+    "code": "080",
+    "full_code": "50213080",
+    "description": "",
+    "group_code": "13",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50213080",
+    "status": "Active"
+  },
+  {
+    "code": "020",
+    "full_code": "50604020",
+    "description": "",
+    "group_code": "04",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50604020",
+    "status": "Active"
+  },
+  {
+    "code": "040",
+    "full_code": "50604040",
+    "description": "",
+    "group_code": "04",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50604040",
+    "status": "Active"
+  },
+  {
+    "code": "020",
+    "full_code": "50606020",
+    "description": "",
+    "group_code": "06",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50606020",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50104010",
+    "description": "",
+    "group_code": "04",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50104010",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50210010",
+    "description": "",
+    "group_code": "10",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50210010",
+    "status": "Active"
+  },
+  {
+    "code": "020",
+    "full_code": "50210020",
+    "description": "",
+    "group_code": "10",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50210020",
+    "status": "Active"
+  },
+  {
+    "code": "100",
+    "full_code": "50213100",
+    "description": "",
+    "group_code": "13",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50213100",
+    "status": "Active"
+  },
+  {
+    "code": "060",
+    "full_code": "50203060",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50203060",
+    "status": "Active"
+  },
+  {
+    "code": "050",
+    "full_code": "50214050",
+    "description": "",
+    "group_code": "14",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50214050",
+    "status": "Active"
+  },
+  {
+    "code": "990",
+    "full_code": "50214990",
+    "description": "",
+    "group_code": "14",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50214990",
+    "status": "Active"
+  },
+  {
+    "code": "020",
+    "full_code": "50213020",
+    "description": "",
+    "group_code": "13",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50213020",
+    "status": "Active"
+  },
+  {
+    "code": "080",
+    "full_code": "50299080",
+    "description": "",
+    "group_code": "99",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50299080",
+    "status": "Active"
+  },
+  {
+    "code": "110",
+    "full_code": "50203110",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50203110",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50214010",
+    "description": "",
+    "group_code": "14",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50214010",
+    "status": "Active"
+  },
+  {
+    "code": "100",
+    "full_code": "50203100",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50203100",
+    "status": "Active"
+  },
+  {
+    "code": "030",
+    "full_code": "50604030",
+    "description": "",
+    "group_code": "04",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50604030",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50604010",
+    "description": "",
+    "group_code": "04",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50604010",
+    "status": "Active"
+  },
+  {
+    "code": "110",
+    "full_code": "50102110",
+    "description": "",
+    "group_code": "02",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50102110",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50216010",
+    "description": "",
+    "group_code": "16",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50216010",
+    "status": "Active"
+  },
+  {
+    "code": "120",
+    "full_code": "50102120",
+    "description": "",
+    "group_code": "02",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50102120",
+    "status": "Active"
+  },
+  {
+    "code": "220",
+    "full_code": "50299220",
+    "description": "",
+    "group_code": "99",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50299220",
+    "status": "Active"
+  },
+  {
+    "code": "030",
+    "full_code": "50213030",
+    "description": "",
+    "group_code": "13",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50213030",
+    "status": "Active"
+  },
+  {
+    "code": "130",
+    "full_code": "50203130",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50203130",
+    "status": "Active"
+  },
+  {
+    "code": "090",
+    "full_code": "50102090",
+    "description": "",
+    "group_code": "02",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50102090",
+    "status": "Active"
+  },
+  {
+    "code": "040",
+    "full_code": "50203040",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50203040",
+    "status": "Active"
+  },
+  {
+    "code": "030",
+    "full_code": "50204030",
+    "description": "",
+    "group_code": "04",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50204030",
+    "status": "Active"
+  },
+  {
+    "code": "030",
+    "full_code": "50214030",
+    "description": "",
+    "group_code": "14",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50214030",
+    "status": "Active"
+  },
+  {
+    "code": "020",
+    "full_code": "50214020",
+    "description": "",
+    "group_code": "14",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50214020",
+    "status": "Active"
+  },
+  {
+    "code": "040",
+    "full_code": "50214040",
+    "description": "",
+    "group_code": "14",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50214040",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50605010",
+    "description": "",
+    "group_code": "05",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50605010",
+    "status": "Active"
+  },
+  {
+    "code": "070",
+    "full_code": "50102070",
+    "description": "",
+    "group_code": "02",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50102070",
+    "status": "Active"
+  },
+  {
+    "code": "990",
+    "full_code": "50602990",
+    "description": "",
+    "group_code": "02",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50602990",
+    "status": "Active"
+  },
+  {
+    "code": "990",
+    "full_code": "50204990",
+    "description": "",
+    "group_code": "04",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50204990",
+    "status": "Active"
+  },
+  {
+    "code": "020",
+    "full_code": "50207020",
+    "description": "",
+    "group_code": "07",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50207020",
+    "status": "Active"
+  },
+  {
+    "code": "030",
+    "full_code": "50203030",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50203030",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50301010",
+    "description": "",
+    "group_code": "01",
+    "sub_class_code": "03",
+    "classification_code": "3",
+    "uacs_code": "50301010",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50209010",
+    "description": "",
+    "group_code": "09",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50209010",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50603010",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50603010",
+    "status": "Active"
+  },
+  {
+    "code": "980",
+    "full_code": "50213980",
+    "description": "",
+    "group_code": "13",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50213980",
+    "status": "Active"
+  },
+  {
+    "code": "050",
+    "full_code": "50203050",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50203050",
+    "status": "Active"
+  },
+  {
+    "code": "080",
+    "full_code": "50214080",
+    "description": "",
+    "group_code": "14",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50214080",
+    "status": "Active"
+  },
+  {
+    "code": "030",
+    "full_code": "50101030",
+    "description": "",
+    "group_code": "01",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50101030",
+    "status": "Active"
+  },
+  {
+    "code": "080",
+    "full_code": "50604080",
+    "description": "",
+    "group_code": "04",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50604080",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50601010",
+    "description": "",
+    "group_code": "01",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50601010",
+    "status": "Active"
+  },
+  {
+    "code": "020",
+    "full_code": "50104020",
+    "description": "",
+    "group_code": "04",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50104020",
+    "status": "Active"
+  },
+  {
+    "code": "990",
+    "full_code": "50606990",
+    "description": "",
+    "group_code": "06",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50606990",
+    "status": "Active"
+  },
+  {
+    "code": "020",
+    "full_code": "50301020",
+    "description": "",
+    "group_code": "01",
+    "sub_class_code": "03",
+    "classification_code": "3",
+    "uacs_code": "50301020",
+    "status": "Active"
+  },
+  {
+    "code": "180",
+    "full_code": "50102180",
+    "description": "",
+    "group_code": "02",
+    "sub_class_code": "01",
+    "classification_code": "1",
+    "uacs_code": "50102180",
+    "status": "Active"
+  },
+  {
+    "code": "070",
+    "full_code": "50214070",
+    "description": "",
+    "group_code": "14",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50214070",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50213010",
+    "description": "",
+    "group_code": "13",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50213010",
+    "status": "Active"
+  },
+  {
+    "code": "210",
+    "full_code": "50299210",
+    "description": "",
+    "group_code": "99",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50299210",
+    "status": "Active"
+  },
+  {
+    "code": "290",
+    "full_code": "50203290",
+    "description": "",
+    "group_code": "03",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50203290",
+    "status": "Active"
+  },
+  {
+    "code": "090",
+    "full_code": "50299090",
+    "description": "",
+    "group_code": "99",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50299090",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50208010",
+    "description": "",
+    "group_code": "08",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50208010",
+    "status": "Active"
+  },
+  {
+    "code": "040",
+    "full_code": "50301040",
+    "description": "",
+    "group_code": "01",
+    "sub_class_code": "03",
+    "classification_code": "3",
+    "uacs_code": "50301040",
+    "status": "Active"
+  },
+  {
+    "code": "050",
+    "full_code": "50301050",
+    "description": "",
+    "group_code": "01",
+    "sub_class_code": "03",
+    "classification_code": "3",
+    "uacs_code": "50301050",
+    "status": "Active"
+  },
+  {
+    "code": "060",
+    "full_code": "50214060",
+    "description": "",
+    "group_code": "14",
+    "sub_class_code": "02",
+    "classification_code": "2",
+    "uacs_code": "50214060",
+    "status": "Active"
+  },
+  {
+    "code": "010",
+    "full_code": "50602010",
+    "description": "",
+    "group_code": "02",
+    "sub_class_code": "06",
+    "classification_code": "6",
+    "uacs_code": "50602010",
+    "status": "Active"
+  }
+]
