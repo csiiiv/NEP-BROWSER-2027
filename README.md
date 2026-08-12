@@ -7,11 +7,12 @@ plus optional browser assets for fast exploration.
 
 ```
 NEP-FY20XX.xlsx          Source workbook(s) at repo root (gitignored)
+browser/                 Static budget browser (+ optional FastAPI)
 scripts/
   nep-gaa-excel/         Stage 1: Excel → intermediate JSON
   nep-gaa/               Stage 2: intermediate JSON → data/
-data/                    Output (gzipped budget batches + reference JSONs)
-archive/browser/         FastAPI budget browser
+data/                    Output (gzipped budget batches + browser assets)
+archive/                 Legacy scripts, docs, probes
 ```
 
 ## Stage 1 — Excel to intermediate JSON
@@ -68,17 +69,17 @@ Writes `data/budget/{year}/browser/`:
 ```powershell
 # from repo root
 python -m http.server 8080
-# open http://localhost:8080/archive/browser/
+# open http://localhost:8080/browser/
 ```
 
 Loads gzipped trees/shards from `data/budget/{year}/browser/`. Line items at leaves only; search scopes: leaf · department · year (warned). Client Cache API caches `.json.gz` downloads.
 
-See `archive/browser/README.md`.
+See `browser/README.md`.
 
 ### Optional FastAPI
 
 ```powershell
-cd archive\browser
+cd browser
 python server.py
 # http://localhost:8000
 ```

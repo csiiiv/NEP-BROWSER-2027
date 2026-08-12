@@ -42,8 +42,8 @@ for _s in (sys.stdout, sys.stderr):
 # ---------------------------------------------------------------------------
 
 HERE = Path(__file__).resolve().parent
-# Repo root is two levels up from archive/browser/
-DATA_DIR = Path(__file__).resolve().parent.parent.parent / "data"
+# Repo root is one level up from browser/
+DATA_DIR = HERE.parent / "data"
 
 if not DATA_DIR.exists():
     raise SystemExit(

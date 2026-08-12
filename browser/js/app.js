@@ -100,7 +100,7 @@ async function boot() {
   if (!state.years.length) {
     document.getElementById("tree-root").innerHTML =
       `<div class="tree-empty">No browser assets found under <code>data/budget/*/browser</code>.
-       Serve the repo root (not only archive/browser).</div>`;
+       Serve the repo root so <code>/data/budget/</code> is reachable.</div>`;
     return;
   }
   state.year = state.years[0];

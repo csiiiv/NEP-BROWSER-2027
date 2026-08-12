@@ -36,7 +36,7 @@ for _stream in (sys.stdout, sys.stderr):
         except (AttributeError, ValueError):
             pass
 
-# Mirror archive/browser/server.py AA rules.
+# Mirror browser/server.py AA rules.
 AA_RULES = [
     ("fundcd",        "10401110",   "debt_service",    "Debt Service - Interest Payments"),
     ("fundcd",        "10401258",   "lgu_share",       "National Tax Allotment (NTA)"),

@@ -1,15 +1,14 @@
 /** Repo base path ('' locally, '/NEP-BROWSER-2027' on project Pages). */
 export function detectBase() {
   const path = location.pathname;
-  const marker = "/archive/browser";
+  const marker = "/browser";
   const i = path.indexOf(marker);
-  if (i > 0) return path.slice(0, i);
-  if (i === 0) return "";
-  // Served from docs/ or root copy of the app
-  const parts = path.split("/").filter(Boolean);
-  if (parts.length && parts[parts.length - 1].endsWith(".html")) parts.pop();
-  if (parts[parts.length - 1] === "browser") parts.pop();
-  return parts.length ? "/" + parts.join("/") : "";
+  if (i >= 0) return path.slice(0, i);
+  // Fallback if ever served from elsewhere
+  let p = path;
+  if (p.endsWith("/index.html")) p = p.slice(0, -"/index.html".length);
+  if (p.endsWith("/")) p = p.slice(0, -1);
+  return p;
 }
 
 const CACHE_NAME = "nep-static-v1";

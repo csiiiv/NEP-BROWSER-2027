@@ -4,7 +4,7 @@ Material moved out of the active NEP Excel → JSON pipeline.
 
 | Path | What it was |
 |------|-------------|
-| `browser/` | FastAPI budget browser (exploratory UI) |
+| `browser/` | Moved to repo-root `browser/` |
 | `docs/PLAN.md` | Implementation plan / upstream analysis |
 | `logs/` | Converter run logs |
 | `scripts/nep-gaa/converter.py` | Upstream vendored converter (superseded by `converter_fy20XX.py`) |
