@@ -63,6 +63,20 @@ Writes `data/budget/{year}/browser/`:
 
 ## Browser
 
+### Static (GitHub Pages–ready) — preferred
+
+```powershell
+# from repo root
+python -m http.server 8080
+# open http://localhost:8080/archive/browser/
+```
+
+Loads gzipped trees/shards from `data/budget/{year}/browser/`. Line items at leaves only; search scopes: leaf · department · year (warned). Client Cache API caches `.json.gz` downloads.
+
+See `archive/browser/README.md`.
+
+### Optional FastAPI
+
 ```powershell
 cd archive\browser
 python server.py

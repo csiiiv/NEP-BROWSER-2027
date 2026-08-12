@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -351,7 +351,7 @@
     margin-bottom: 2px;
   }
 
-  /* Branch rails — make nesting obvious */
+  /* Branch rails â€” make nesting obvious */
   .tree-children {
     display: none;
     margin-left: 7px;
@@ -570,15 +570,15 @@
   <div class="header-row">
     <div>
       <h1>NEP Budget Browser</h1>
-      <div class="meta">Philippine National Expenditure Program · amounts in pesos</div>
+      <div class="meta">Philippine National Expenditure Program Â· amounts in pesos</div>
       <div class="controls">
         <label for="year-select">FY
           <select id="year-select"></select>
         </label>
         <span class="view-toggle">
           <span class="btn-group" id="view-toggle">
-            <button type="button" data-v="place" class="active" title="Dept → Agency → Region → Division → OU → Program">Place</button>
-            <button type="button" data-v="nep" title="Dept → Agency → Program → Region → Division → OU">NEP</button>
+            <button type="button" data-v="place" class="active" title="Dept â†’ Agency â†’ Region â†’ Division â†’ OU â†’ Program">Place</button>
+            <button type="button" data-v="nep" title="Dept â†’ Agency â†’ Program â†’ Region â†’ Division â†’ OU">NEP</button>
           </span>
         </span>
       </div>
@@ -588,9 +588,9 @@
 
   <div class="summary-bar">
     <div class="inline-totals" id="inline-totals">
-      <span>Total <b id="inline-grand">—</b></span>
-      <span class="aa">Automatic <b id="inline-aa">—</b></span>
-      <span class="prog">Programmed <b id="inline-prog">—</b></span>
+      <span>Total <b id="inline-grand">â€”</b></span>
+      <span class="aa">Automatic <b id="inline-aa">â€”</b></span>
+      <span class="prog">Programmed <b id="inline-prog">â€”</b></span>
     </div>
     <button type="button" class="linkish" id="toggle-cards">Show details</button>
   </div>
@@ -614,11 +614,6 @@
   </div>
 
   <div class="toolbar">
-    <span class="btn-group" id="appropriation-toggle">
-      <button data-v="all" class="active">All</button>
-      <button data-v="aa" class="aa">Automatic</button>
-      <button data-v="programmed" class="prog">Programmed</button>
-    </span>
     <label>
       Amount
       <select id="amount-filter">
@@ -631,8 +626,18 @@
       Search
       <input type="text" id="search-input" placeholder="flood control, RLIP, NTA…">
     </label>
+    <label>
+      Scope
+      <select id="search-scope" title="Where to search">
+        <option value="leaf" selected>Current leaf</option>
+        <option value="dept">Department</option>
+        <option value="year">Entire year…</option>
+      </select>
+    </label>
     <button id="search-btn">Search</button>
     <button id="reset-btn" class="secondary">Reset</button>
+    <button type="button" class="linkish" id="clear-cache">Clear cache</button>
+    <span id="cache-status" style="font-size:11px;color:var(--muted)"></span>
   </div>
 </header>
 
@@ -651,618 +656,11 @@
       <div class="summary" id="items-summary"></div>
     </div>
     <div id="items-content">
-      <div class="tree-empty">Expand the tree on the left, then click a node to load line items.</div>
+      <div class="tree-empty">Serve the <strong>repo root</strong>, then open <code>/archive/browser/</code>. Line items load at leaf nodes only.</div>
     </div>
   </div>
 </main>
 
-<script>
-// ---------- State ----------
-const VIEW_PATHS = {
-  place: ["Dept", "Agency", "Region", "Division", "OU", "Program"],
-  nep: ["Dept", "Agency", "Program", "Region", "Division", "OU"],
-};
-const KIND_LABELS = {
-  root: "Total",
-  section: "Section",
-  aa_item: "AA",
-  dept: "Dept",
-  agency: "Agency",
-  region: "Region",
-  division: "Div",
-  ou: "OU",
-  program: "Prog",
-};
-/** Skip auto-fetch when node has more than this many indexed items. */
-const LARGE_NODE_THRESHOLD = 2500;
-
-const state = {
-  year: null,
-  years: [],
-  view: "place",
-  selectedNode: null,
-  amountFilter: "nonzero",
-  appropriation: "all",
-  search: "",
-  itemsOffset: 0,
-  itemsLimit: 100,
-  itemsTotal: 0,
-  expanded: new Set(),
-  loaded: new Set(),
-  itemsAbort: null,
-  loadTimer: null,
-  forceLoadItems: false,
-};
-
-// ---------- Helpers ----------
-function formatAmountP(pesos) {
-  if (pesos == null || Number.isNaN(Number(pesos))) return "₱0.00";
-  const n = Number(pesos);
-  if (n === 0) return "₱0.00";
-  const sign = n < 0 ? "-" : "";
-  const abs = Math.abs(n);
-  if (abs >= 1e12) return `${sign}₱${(abs / 1e12).toFixed(2)}T`;
-  if (abs >= 1e9) return `${sign}₱${(abs / 1e9).toFixed(2)}B`;
-  if (abs >= 1e6) return `${sign}₱${(abs / 1e6).toFixed(2)}M`;
-  if (abs >= 1e3) return `${sign}₱${(abs / 1e3).toFixed(2)}K`;
-  return `${sign}₱${abs.toFixed(2)}`;
-}
-function formatAmountT(trillions) {
-  return formatAmountP((Number(trillions) || 0) * 1e12);
-}
-function formatNum(n) {
-  return Number(n).toLocaleString();
-}
-function nodeKey(node) {
-  if (node.parent) return `${node.kind}:${node.parent}:${node.code}`;
-  return `${node.kind}:${node.code}`;
-}
-function escapeHtml(s) {
-  if (s == null) return "";
-  return String(s)
-    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-}
-
-/** Short code for tree display; full code stays in title tooltip. */
-function displayCode(node) {
-  if (!node.code || node.kind === "root" || node.kind === "section") return null;
-  const c = String(node.code);
-  if (c.includes("|")) {
-    const parts = c.split("|");
-    return parts[parts.length - 1];
-  }
-  if (c.length > 14) return c.slice(0, 10) + "…";
-  return c;
-}
-
-function updateViewPath() {
-  const steps = VIEW_PATHS[state.view] || VIEW_PATHS.place;
-  const el = document.getElementById("view-path");
-  el.innerHTML = `<strong>${state.view === "nep" ? "NEP" : "Place"} path</strong> `
-    + steps.map(s => `<span class="step">${s}</span>`).join('<span class="arrow">›</span>');
-  document.getElementById("tree-view-label").textContent =
-    state.view === "nep" ? "PDF-like program order" : "Geographic place order";
-}
-
-function abortItemsFetch() {
-  if (state.itemsAbort) {
-    state.itemsAbort.abort();
-    state.itemsAbort = null;
-  }
-  if (state.loadTimer) {
-    clearInterval(state.loadTimer);
-    state.loadTimer = null;
-  }
-}
-
-function resetTreeSelection() {
-  abortItemsFetch();
-  state.expanded.clear();
-  state.loaded.clear();
-  state.selectedNode = null;
-  state.forceLoadItems = false;
-  document.getElementById("items-content").innerHTML =
-    '<div class="tree-empty">Expand the tree on the left, then click a node to load line items.</div>';
-  document.getElementById("items-title").textContent = "Select a branch";
-  document.getElementById("items-breadcrumb").textContent = "";
-  document.getElementById("items-summary").textContent = "";
-}
-
-// ---------- Boot ----------
-async function boot() {
-  const res = await fetch("/api/years");
-  const data = await res.json();
-  state.years = data.years;
-  state.year = data.years[0];
-  const sel = document.getElementById("year-select");
-  data.years.forEach(y => {
-    const opt = document.createElement("option");
-    opt.value = y;
-    opt.textContent = y;
-    sel.appendChild(opt);
-  });
-  sel.value = state.year;
-  sel.addEventListener("change", (e) => {
-    state.year = e.target.value;
-    resetTreeSelection();
-    loadSummary();
-    loadRoot();
-  });
-
-  document.querySelectorAll("#view-toggle button").forEach(btn => {
-    btn.addEventListener("click", () => {
-      if (btn.dataset.v === state.view) return;
-      document.querySelectorAll("#view-toggle button")
-        .forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      state.view = btn.dataset.v;
-      updateViewPath();
-      resetTreeSelection();
-      loadRoot();
-    });
-  });
-
-  document.querySelectorAll("#appropriation-toggle button").forEach(btn => {
-    btn.addEventListener("click", () => {
-      document.querySelectorAll("#appropriation-toggle button")
-        .forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      state.appropriation = btn.dataset.v;
-      state.itemsOffset = 0;
-      state.forceLoadItems = true;
-      if (state.selectedNode) loadItems();
-    });
-  });
-
-  document.getElementById("toggle-cards").addEventListener("click", () => {
-    const cards = document.getElementById("cards");
-    const open = cards.classList.toggle("open");
-    document.getElementById("toggle-cards").textContent =
-      open ? "Hide details" : "Show details";
-  });
-
-  updateViewPath();
-  loadSummary();
-  loadRoot();
-}
-
-async function loadSummary() {
-  const res = await fetch(`/api/summary?year=${state.year}`);
-  if (!res.ok) return;
-  const data = await res.json();
-  const grand = formatAmountP(data.grand_total_pesos);
-  const aa = formatAmountP(data.aa_total_pesos);
-  const prog = formatAmountP(data.programmed_total_pesos);
-  document.getElementById("inline-grand").textContent = grand;
-  document.getElementById("inline-aa").textContent = aa;
-  document.getElementById("inline-prog").textContent = prog;
-  document.getElementById("card-grand").textContent = grand;
-  document.getElementById("card-grand-sub").textContent =
-    `level-0 · ${data.aa_breakdown.length} AA categories · ${data.departments} departments`;
-  document.getElementById("card-aa").textContent = aa;
-  document.getElementById("card-aa-sub").textContent =
-    `${data.aa_share_pct.toFixed(1)}% of NEP`;
-  document.getElementById("card-prog").textContent = prog;
-  document.getElementById("card-prog-sub").textContent =
-    `${(100 - data.aa_share_pct).toFixed(1)}% of NEP`;
-}
-
-// ---------- Tree ----------
-async function loadRoot() {
-  const res = await fetch(`/api/tree?year=${state.year}&view=${state.view}`);
-  const data = await res.json();
-  const container = document.getElementById("tree-root");
-  container.innerHTML = "";
-
-  const header = document.createElement("div");
-  header.className = "tree-root-header";
-  const rootNode = {
-    kind: "root",
-    code: data.code || "total",
-    label: data.label,
-    item_count: data.item_count,
-    amount_display_trillions: data.amount_display_trillions,
-    child_count: data.children.length,
-  };
-  header.appendChild(renderTreeNode(rootNode, "", { isRootHeader: true }));
-  container.appendChild(header);
-
-  data.children.forEach(child => {
-    container.appendChild(renderTreeNode(child, data.label));
-  });
-}
-
-function isExpandable(node) {
-  return node.child_count > 0 && node.kind !== "aa_item";
-}
-
-function renderTreeNode(node, parentBreadcrumb, opts = {}) {
-  const breadcrumb = parentBreadcrumb
-    ? `${parentBreadcrumb} › ${node.label}`
-    : node.label;
-  const wrapper = document.createElement("div");
-  wrapper.className = "tree-node";
-  wrapper.dataset.key = nodeKey(node);
-
-  const row = document.createElement("div");
-  const sectionClass = node.kind === "section" ? ` kind-section-${node.code}` : "";
-  row.className = `tree-row kind-${node.kind}${sectionClass}`;
-  if (state.selectedNode && nodeKey(state.selectedNode) === nodeKey(node)) {
-    row.classList.add("selected");
-  }
-
-  const caret = document.createElement("span");
-  caret.className = "caret";
-  if (isExpandable(node)) {
-    caret.textContent = "▶";
-    if (state.expanded.has(nodeKey(node))) caret.classList.add("expanded");
-  } else {
-    caret.classList.add("invisible");
-  }
-
-  const chip = document.createElement("span");
-  chip.className = `kind-chip k-${node.kind}`;
-  chip.textContent = KIND_LABELS[node.kind] || node.kind;
-
-  const short = displayCode(node);
-  let codeEl = null;
-  if (short) {
-    codeEl = document.createElement("span");
-    codeEl.className = "code";
-    codeEl.textContent = short;
-    codeEl.title = node.code;
-  }
-
-  const label = document.createElement("span");
-  label.className = "label";
-  label.textContent = node.label;
-  label.title = node.code
-    ? `${node.label}\n${node.code}`
-    : node.label;
-
-  const stats = document.createElement("span");
-  stats.className = "stats";
-  const amountSpan = document.createElement("span");
-  amountSpan.className = "amount";
-  amountSpan.textContent = formatAmountT(node.amount_display_trillions);
-  stats.appendChild(amountSpan);
-  if (node.item_count != null) {
-    const count = document.createElement("span");
-    count.className = "count";
-    count.textContent = ` · ${formatNum(node.item_count)}`;
-    stats.appendChild(count);
-  }
-
-  row.appendChild(caret);
-  row.appendChild(chip);
-  if (codeEl) row.appendChild(codeEl);
-  row.appendChild(label);
-  row.appendChild(stats);
-
-  const children = document.createElement("div");
-  children.className = "tree-children";
-  if (state.expanded.has(nodeKey(node))) children.classList.add("open");
-
-  row.addEventListener("click", async (e) => {
-    e.stopPropagation();
-    selectNode(node, breadcrumb);
-    if (isExpandable(node)) {
-      await toggleExpand(node, children, caret, breadcrumb);
-    }
-  });
-
-  wrapper.appendChild(row);
-  if (!opts.isRootHeader) {
-    wrapper.appendChild(children);
-    if (state.expanded.has(nodeKey(node)) && !state.loaded.has(nodeKey(node))) {
-      toggleExpand(node, children, caret, breadcrumb);
-    }
-  }
-
-  return wrapper;
-}
-
-async function toggleExpand(node, childrenEl, caretEl, breadcrumb) {
-  const key = nodeKey(node);
-  if (state.expanded.has(key)) {
-    state.expanded.delete(key);
-    state.loaded.delete(key);
-    childrenEl.classList.remove("open");
-    childrenEl.innerHTML = "";
-    caretEl.classList.remove("expanded");
-    return;
-  }
-  state.expanded.add(key);
-  childrenEl.classList.add("open");
-  caretEl.classList.add("expanded");
-
-  if (state.loaded.has(key)) return;
-  state.loaded.add(key);
-
-  const loading = document.createElement("div");
-  loading.className = "tree-loading";
-  loading.textContent = "Loading branches…";
-  childrenEl.appendChild(loading);
-
-  try {
-    let url = `/api/tree/${node.kind}/${encodeURIComponent(node.code)}`
-      + `?year=${state.year}&view=${state.view}`;
-    if (node.parent) url += `&parent=${encodeURIComponent(node.parent)}`;
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    childrenEl.removeChild(loading);
-    if (!data.children.length) {
-      const empty = document.createElement("div");
-      empty.className = "tree-loading";
-      empty.textContent = "No child branches";
-      childrenEl.appendChild(empty);
-      return;
-    }
-    data.children.forEach(child => {
-      if (child.kind === "program" && !child.parent) child.parent = node.code;
-      childrenEl.appendChild(renderTreeNode(child, breadcrumb));
-    });
-  } catch (err) {
-    loading.textContent = `Error: ${err.message}`;
-    loading.style.color = "red";
-    state.loaded.delete(key);
-    state.expanded.delete(key);
-  }
-}
-
-// ---------- Items panel ----------
-function selectNode(node, breadcrumb) {
-  state.selectedNode = node;
-  state.selectedNode.breadcrumb = breadcrumb;
-  state.itemsOffset = 0;
-  state.forceLoadItems = false;
-  document.querySelectorAll(".tree-row.selected").forEach(el => el.classList.remove("selected"));
-  const wrapper = document.querySelector(`[data-key="${CSS.escape(nodeKey(node))}"]`);
-  if (wrapper) wrapper.querySelector(".tree-row").classList.add("selected");
-
-  const title = document.getElementById("items-title");
-  const crumb = document.getElementById("items-breadcrumb");
-  title.textContent = node.label;
-  const kind = KIND_LABELS[node.kind] || node.kind;
-  const codeBit = node.code && node.kind !== "root"
-    ? `<code class="item-id" title="${escapeHtml(node.code)}">${escapeHtml(displayCode(node) || node.code)}</code> `
-    : "";
-  crumb.innerHTML = `${codeBit}<span class="kind-chip k-${node.kind}" style="display:inline-block;margin-right:6px">${kind}</span>${escapeHtml(breadcrumb || "")}`;
-
-  const count = node.item_count || 0;
-  if (count > LARGE_NODE_THRESHOLD) {
-    showLargeNodePrompt(node);
-    return;
-  }
-  loadItems();
-}
-
-function showLargeNodePrompt(node) {
-  abortItemsFetch();
-  const summary = document.getElementById("items-summary");
-  const content = document.getElementById("items-content");
-  summary.innerHTML =
-    `<strong>${formatNum(node.item_count)}</strong> indexed items · ${formatAmountT(node.amount_display_trillions)}`;
-  content.innerHTML = `
-    <div class="load-prompt">
-      <p>This branch is large (<strong>${formatNum(node.item_count)}</strong> items).</p>
-      <div class="hint">Loading scans every batch file and can take a while. Prefer drilling into a smaller child (region, division, or OU), or load anyway.</div>
-      <button type="button" id="force-load-btn">Load line items</button>
-      <button type="button" class="cancel" id="skip-load-btn">Keep browsing tree</button>
-    </div>`;
-  document.getElementById("force-load-btn").addEventListener("click", () => {
-    state.forceLoadItems = true;
-    loadItems();
-  });
-  document.getElementById("skip-load-btn").addEventListener("click", () => {
-    content.innerHTML =
-      '<div class="tree-empty">Tree selection kept. Expand a smaller branch to load items faster.</div>';
-  });
-}
-
-async function loadItems() {
-  if (!state.selectedNode) return;
-  const node = state.selectedNode;
-  const summary = document.getElementById("items-summary");
-  const content = document.getElementById("items-content");
-
-  abortItemsFetch();
-  const ac = new AbortController();
-  state.itemsAbort = ac;
-
-  const started = Date.now();
-  summary.innerHTML = "Loading items…";
-  content.innerHTML = `
-    <div class="loading-box">
-      <div class="spinner"></div>
-      <div id="load-elapsed">Scanning batches…</div>
-      <div style="margin-top:8px;font-size:11px">
-        <button type="button" class="linkish" id="cancel-load-btn">Cancel</button>
-      </div>
-    </div>`;
-  document.getElementById("cancel-load-btn").addEventListener("click", () => {
-    abortItemsFetch();
-    content.innerHTML = '<div class="tree-empty">Load cancelled.</div>';
-    summary.textContent = "";
-  });
-  state.loadTimer = setInterval(() => {
-    const el = document.getElementById("load-elapsed");
-    if (el) el.textContent = `Scanning batches… ${((Date.now() - started) / 1000).toFixed(1)}s`;
-  }, 200);
-
-  let url = `/api/tree/${node.kind}/${encodeURIComponent(node.code)}/items`
-    + `?year=${state.year}`
-    + `&view=${state.view}`
-    + `&amount_filter=${state.amountFilter}`
-    + `&appropriation=${state.appropriation}`
-    + `&limit=${state.itemsLimit}`
-    + `&offset=${state.itemsOffset}`;
-  if (state.search) url += `&search=${encodeURIComponent(state.search)}`;
-  if (node.parent) url += `&parent=${encodeURIComponent(node.parent)}`;
-
-  try {
-    const res = await fetch(url, { signal: ac.signal });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    if (ac.signal.aborted) return;
-    abortItemsFetch();
-    state.itemsTotal = data.total_matched;
-    const secs = ((Date.now() - started) / 1000).toFixed(1);
-    const parts = [
-      `<strong>${formatNum(data.total_matched)}</strong> matching`,
-      `${secs}s`,
-    ];
-    if (state.appropriation === "aa") parts.push("automatic only");
-    if (state.appropriation === "programmed") parts.push("programmed only");
-    if (state.amountFilter === "nonzero") parts.push("non-zero");
-    if (state.amountFilter === "zero") parts.push("zero-amount");
-    if (state.search) parts.push(`“${escapeHtml(state.search)}”`);
-    summary.innerHTML = parts.join(" · ");
-    renderItemsTable(data.items);
-  } catch (err) {
-    if (err.name === "AbortError") return;
-    abortItemsFetch();
-    content.innerHTML = `<div class="tree-empty">Error: ${escapeHtml(err.message)}</div>`;
-    summary.textContent = "";
-  }
-}
-
-function renderItemsTable(items) {
-  const content = document.getElementById("items-content");
-  content.innerHTML = "";
-  if (items.length === 0) {
-    content.innerHTML = '<div class="tree-empty">No matching items.</div>';
-    return;
-  }
-
-  const tableWrap = document.createElement("div");
-  const table = document.createElement("table");
-  table.innerHTML = `
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Level</th>
-        <th>Description</th>
-        <th class="num">Amount</th>
-        <th>Region</th>
-        <th>Funding</th>
-        <th>Object</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  `;
-  const tbody = table.querySelector("tbody");
-  items.forEach(item => {
-    const tr = document.createElement("tr");
-    if ((item.amount || 0) === 0) tr.className = "zero-amount";
-    const aaBadge = item.is_automatic ? '<span class="badge aa">AA</span>' : "";
-    tr.innerHTML = `
-      <td><code class="item-id">${escapeHtml(item.id || "")}</code></td>
-      <td class="num">${item.prexc_level ?? "—"}</td>
-      <td class="description" title="${escapeHtml(item.description || "")}">${escapeHtml(item.description || "")}${aaBadge}</td>
-      <td class="num">${formatAmountP(item.amount_display_pesos)}</td>
-      <td>${escapeHtml(item.region_name || "—")}</td>
-      <td>${escapeHtml(item.funding_name || "—")}</td>
-      <td>${escapeHtml(item.object_name || "—")}</td>
-    `;
-    tr.style.cursor = "pointer";
-    tr.addEventListener("click", () => showItemDetail(item, tr));
-    tbody.appendChild(tr);
-  });
-  tableWrap.appendChild(table);
-  content.appendChild(tableWrap);
-
-  const pag = document.createElement("div");
-  pag.className = "pagination";
-  const prev = document.createElement("button");
-  prev.textContent = "← Prev";
-  prev.disabled = state.itemsOffset === 0;
-  prev.addEventListener("click", () => {
-    state.itemsOffset = Math.max(0, state.itemsOffset - state.itemsLimit);
-    state.forceLoadItems = true;
-    loadItems();
-  });
-  const next = document.createElement("button");
-  next.textContent = "Next →";
-  next.disabled = state.itemsOffset + state.itemsLimit >= state.itemsTotal;
-  next.addEventListener("click", () => {
-    state.itemsOffset += state.itemsLimit;
-    state.forceLoadItems = true;
-    loadItems();
-  });
-  const range = document.createElement("span");
-  const from = state.itemsOffset + 1;
-  const to = Math.min(state.itemsOffset + items.length, state.itemsTotal);
-  range.textContent = `${from}–${to} of ${formatNum(state.itemsTotal)}`;
-  pag.appendChild(prev);
-  pag.appendChild(range);
-  pag.appendChild(next);
-  content.appendChild(pag);
-}
-
-function showItemDetail(item) {
-  document.querySelectorAll(".item-detail").forEach(el => el.remove());
-  const detail = document.createElement("div");
-  detail.className = "item-detail";
-  const aaRow = item.is_automatic
-    ? `<dt>Classification</dt><dd><span class="badge aa">Automatic Appropriation</span></dd>`
-    : `<dt>Classification</dt><dd>Programmed</dd>`;
-  const pathLabel = state.view === "nep" ? "NEP path" : "Place path";
-  const crumb = (item.breadcrumb && item.breadcrumb.length)
-    ? `<dt>${pathLabel}</dt><dd>${escapeHtml(item.breadcrumb.filter(Boolean).join(" › "))}</dd>`
-    : "";
-  detail.innerHTML = `
-    <dl>
-      <dt>ID</dt><dd>${escapeHtml(item.id || "")}</dd>
-      <dt>Amount</dt><dd>${formatAmountP(item.amount_display_pesos)}</dd>
-      ${aaRow}
-      ${crumb}
-      <dt>PREXC FPAP ID</dt><dd>${escapeHtml(item.prexc_fpap_id || "")}</dd>
-      <dt>PREXC level</dt><dd>${item.prexc_level}</dd>
-      <dt>Organization</dt><dd>${escapeHtml(item.org_name || "")} <code>${escapeHtml(item.org_uacs_code || "")}</code></dd>
-      <dt>Division</dt><dd>${escapeHtml(item.division_name || "—")} <code>${escapeHtml(item.division_code || "")}</code></dd>
-      <dt>Region</dt><dd>${escapeHtml(item.region_name || "")} <code>${escapeHtml(item.region_code || "")}</code></dd>
-      <dt>Funding source</dt><dd>${escapeHtml(item.funding_name || "")} <code>${escapeHtml(item.funding_uacs_code || "")}</code></dd>
-      <dt>Expense object</dt><dd>${escapeHtml(item.object_name || "")} <code>${escapeHtml(item.object_uacs_code || "")}</code></dd>
-      <dt>Description</dt><dd>${escapeHtml(item.description || "")}</dd>
-    </dl>
-  `;
-  document.getElementById("items-content").appendChild(detail);
-}
-
-// ---------- Toolbar ----------
-document.getElementById("amount-filter").addEventListener("change", (e) => {
-  state.amountFilter = e.target.value;
-  state.itemsOffset = 0;
-  state.forceLoadItems = true;
-  if (state.selectedNode) loadItems();
-});
-document.getElementById("search-btn").addEventListener("click", () => {
-  state.search = document.getElementById("search-input").value.trim();
-  state.itemsOffset = 0;
-  state.forceLoadItems = true;
-  if (state.selectedNode) loadItems();
-});
-document.getElementById("search-input").addEventListener("keydown", (e) => {
-  if (e.key === "Enter") document.getElementById("search-btn").click();
-});
-document.getElementById("reset-btn").addEventListener("click", () => {
-  state.amountFilter = "nonzero";
-  state.appropriation = "all";
-  state.search = "";
-  state.itemsOffset = 0;
-  document.getElementById("amount-filter").value = "nonzero";
-  document.getElementById("search-input").value = "";
-  document.querySelectorAll("#appropriation-toggle button").forEach(b => b.classList.remove("active"));
-  document.querySelector('#appropriation-toggle button[data-v="all"]').classList.add("active");
-  state.forceLoadItems = true;
-  if (state.selectedNode) loadItems();
-});
-
-boot();
-</script>
-
+<script type="module" src="./js/app.js"></script>
 </body>
 </html>
