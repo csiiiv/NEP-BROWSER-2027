@@ -38,7 +38,12 @@ export default function About() {
               Explore the Philippine National Expenditure Program (NEP) from pre-built static
               assets: department/agency trees, automatic appropriations, and leaf-level expense
               lines (PREXC level 7). Built for{" "}
-              <ExtLink href="https://github.com/bettergovph">BetterGovPH</ExtLink>.
+              <ExtLink href="https://github.com/bettergovph">BetterGovPH</ExtLink>
+              . Source code:{" "}
+              <ExtLink href="https://github.com/csiiiv/NEP-BROWSER-2027">
+                github.com/csiiiv/NEP-BROWSER-2027
+              </ExtLink>
+              .
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6 text-sm leading-relaxed">
@@ -51,6 +56,13 @@ export default function About() {
                 government publications. This app only reshapes and displays that data.
               </p>
               <ul className="list-disc space-y-2 pl-5">
+                <li>
+                  <strong>This repository</strong> —{" "}
+                  <ExtLink href="https://github.com/csiiiv/NEP-BROWSER-2027">
+                    csiiiv/NEP-BROWSER-2027
+                  </ExtLink>{" "}
+                  (pipeline, browser UI, and GitHub Pages deploy).
+                </li>
                 <li>
                   <strong>National Expenditure Program (NEP)</strong> — published by the{" "}
                   <ExtLink href="https://www.dbm.gov.ph/">
@@ -156,10 +168,18 @@ export default function About() {
               </p>
             </section>
           </CardContent>
-          <CardFooter>
+          <CardFooter className="flex flex-wrap gap-2 sm:justify-between">
             <Link to="/2027/nep" className={cn(buttonVariants({ variant: "default" }))}>
               ← Back to browser
             </Link>
+            <a
+              href="https://github.com/csiiiv/NEP-BROWSER-2027"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(buttonVariants({ variant: "outline" }))}
+            >
+              GitHub repository
+            </a>
           </CardFooter>
         </Card>
       </main>
