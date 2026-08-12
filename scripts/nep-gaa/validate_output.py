@@ -52,6 +52,7 @@ SCHEMAS: Dict[str, Dict[str, Dict[str, bool]]] = {
         "object_uacs_code": {"required": False},
         "prexc_level": {"required": False},
         "sorder": {"required": False},
+        "excel_row": {"required": False},
     },
     "organization/departments.json": {
         "code": {"required": True, "length": 2},

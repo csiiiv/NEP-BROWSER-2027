@@ -505,6 +505,14 @@ class FY2026Converter:
 
         # Build the budget record (matches upstream schema + SORDER + PREXC_LEVEL).
         record_id = f"{BUDGET_TYPE}-{FISCAL_YEAR}-{str(record_number).zfill(10)}"
+        excel_row = record.get("excel_row")
+        if excel_row is None or excel_row == "":
+            excel_row = record_number + 1
+        else:
+            try:
+                excel_row = int(float(str(excel_row)))
+            except ValueError:
+                excel_row = record_number + 1
         out = {
             "id": record_id,
             "budget_type": BUDGET_TYPE,
@@ -514,6 +522,7 @@ class FY2026Converter:
             "prexc_fpap_id": prexc_id,
             "prexc_level": prexc_level,
             "sorder": sorder,
+            "excel_row": excel_row,
         }
         if org_code:
             out["org_uacs_code"] = org_code

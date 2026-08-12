@@ -1,4 +1,4 @@
-﻿"""
+"""
 NEP Budget Browser -- FastAPI backend.
 
 Serves a hierarchical tree view over the converted JSON data for one or more
@@ -6,8 +6,8 @@ fiscal years. Currently hosts FY2026 and FY2027 side-by-side.
 
 Tree structure (toggleable views under Programmed Appropriations):
 
-  Place (default): Dept → Agency → Region → Division → OU → Program → items
-  NEP (PDF-like):  Dept → Agency → Program → Region → Division → OU → items
+  Place (default): Dept ? Agency ? Region ? Division ? OU ? Program ? items
+  NEP (PDF-like):  Dept ? Agency ? Program ? Region ? Division ? OU ? items
 
 Prefers pre-built assets under data/budget/{year}/browser/ (trees + item shards)
 produced by scripts/nep-gaa/build_browser_assets.py. Falls back to scanning
@@ -96,7 +96,7 @@ REGIONS = {r["code"]: r for r in _load_json(DATA_DIR / "location" / "regions.jso
 # ---------------------------------------------------------------------------
 
 # Each rule: (match_type, match_key, category, name)
-# match_type âˆˆ {"fundcd", "fundcd_prefix", "object_code"}
+# match_type ∈ {"fundcd", "fundcd_prefix", "object_code"}
 AA_RULES = [
     ("fundcd",        "10401110",   "debt_service",    "Debt Service - Interest Payments"),
     ("fundcd",        "10401258",   "lgu_share",       "National Tax Allotment (NTA)"),
@@ -265,7 +265,7 @@ class YearStore:
 
     @property
     def tree(self) -> Dict[str, Node]:
-        """Default (place) department roots — used by summary counts."""
+        """Default (place) department roots � used by summary counts."""
         return self.views["place"].tree
 
     @property
@@ -595,7 +595,7 @@ class YearStore:
             return prexc == code
         return False
 
-    # ---- Place: dept â†’ agency â†’ region â†’ division â†’ ou â†’ program --------
+    # ---- Place: dept → agency → region → division → ou → program --------
 
     def _place_leaf(self, dept, agency, region, division, div_name, ou, prexc, desc) -> Node:
         idx = self.views["place"]
@@ -605,7 +605,7 @@ class YearStore:
         )
         return self._ensure_program(idx, ou_node, ou, prexc, desc)
 
-    # ---- NEP: dept â†’ agency â†’ program â†’ region â†’ division â†’ ou ----------
+    # ---- NEP: dept → agency → program → region → division → ou ----------
 
     def _nep_leaf(self, dept, agency, region, division, div_name, ou, prexc, desc) -> Node:
         idx = self.views["nep"]
@@ -771,7 +771,7 @@ def _parse_view(view: str) -> str:
 
 
 def _node_to_summary(node: Node, store: Optional[YearStore] = None,
-                     view: str = "place") -> dict:
+                     view: str = "nep") -> dict:
     total = node.total_amount
     item_count = node.item_count
     child_count = len(node.children)
@@ -860,7 +860,7 @@ def get_summary(year: str = Query(...)) -> dict:
 @app.get("/api/tree")
 def get_root_tree(
     year: str = Query(...),
-    view: str = Query("place"),
+    view: str = Query("nep"),
 ) -> dict:
     """Return Total Appropriations with Automatic and Programmed branches."""
     view = _parse_view(view)
@@ -905,7 +905,7 @@ def get_root_tree(
 def get_node(kind: str, code: str,
              parent_code: Optional[str] = Query(None, alias="parent"),
              year: str = Query(...),
-             view: str = Query("place")) -> dict:
+             view: str = Query("nep")) -> dict:
     """Get a specific node's full info + children."""
     view = _parse_view(view)
     store = _get_store(year)
@@ -945,7 +945,7 @@ def get_node(kind: str, code: str,
 def get_items(kind: str, code: str,
               parent_code: Optional[str] = Query(None, alias="parent"),
               year: str = Query(...),
-              view: str = Query("place"),
+              view: str = Query("nep"),
               amount_filter: str = Query("all", pattern="^(all|nonzero|zero)$"),
               appropriation: str = Query("all", pattern="^(all|aa|programmed)$"),
               search: Optional[str] = None,
@@ -1008,7 +1008,7 @@ def get_items(kind: str, code: str,
     }
 
 
-def _enrich_item(rec: dict, view: str = "place") -> dict:
+def _enrich_item(rec: dict, view: str = "nep") -> dict:
     """Add human-readable enrichment + breadcrumb for the active view."""
     region_code = rec.get("region_code")
     funding = rec.get("funding_uacs_code")

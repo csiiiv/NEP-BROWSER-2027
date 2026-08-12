@@ -48,6 +48,18 @@ AA_RULES = [
 ]
 
 
+def _ensure_excel_row(rec: dict) -> dict:
+    """Stamp excel_row if missing (id NEP-YYYY-NNNNNNNNNN → row N+1)."""
+    if rec.get("excel_row") not in (None, ""):
+        return rec
+    rid = str(rec.get("id") or "")
+    parts = rid.rsplit("-", 1)
+    if len(parts) == 2 and parts[1].isdigit():
+        rec = dict(rec)
+        rec["excel_row"] = int(parts[1]) + 1
+    return rec
+
+
 def _which_aa_rule(rec: dict) -> Optional[str]:
     fc = rec.get("funding_uacs_code") or ""
     obj = rec.get("object_uacs_code") or ""
@@ -305,6 +317,7 @@ class AssetBuilder:
         print(f"[FY{self.year}] Ingested {n:,} records.", flush=True)
 
     def _ingest_rec(self, rec: dict) -> None:
+        rec = _ensure_excel_row(rec)
         level = rec.get("prexc_level", 0)
         amt = rec.get("amount", 0.0) or 0.0
         if level == 0:

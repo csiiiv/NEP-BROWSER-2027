@@ -44,6 +44,11 @@ def excel_to_json(excel_file_path, output_dir=None):
             print(f"Data shape: {df.shape[0]} rows x {df.shape[1]} columns")
             print(f"Columns: {', '.join(df.columns.tolist())}")
 
+            # Excel row number: header is row 1, first data row is 2.
+            # Persist on every record for downstream traceability.
+            df = df.copy()
+            df.insert(0, "excel_row", (df.index + 2).astype(int))
+
             # Convert DataFrame to JSON
             pbar.set_description("Converting to JSON")
             json_data = df.to_dict(orient='records')

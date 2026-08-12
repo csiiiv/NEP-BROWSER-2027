@@ -1,10 +1,10 @@
-import { detectBase, cacheStats, clearNepCache } from "./cache.js";
+import { detectBase, cacheStats, clearNepCache } from "./cache.js?v=7";
 import {
   YearData,
   discoverYears,
   isItemLeaf,
   AA_RULES,
-} from "./data.js";
+} from "./data.js?v=7";
 
 const VIEW_PATHS = {
   place: ["Dept", "Agency", "Region", "Division", "OU", "Program"],
@@ -26,7 +26,7 @@ const state = {
   base: detectBase(),
   year: null,
   years: [],
-  view: "place",
+  view: "nep",
   store: null,
   selectedNode: null,
   breadcrumb: "",
@@ -170,9 +170,16 @@ async function boot() {
 
   updateViewPath();
   await reloadYear();
+  const nObj = Object.keys(state.store.objects || {}).length;
+  const cacheEl = document.getElementById("cache-status");
+  if (cacheEl && nObj === 0) {
+    cacheEl.textContent += " · WARNING: expense object labels failed to load";
+    cacheEl.style.color = "#b8002e";
+  }
   if ("serviceWorker" in navigator) {
     try {
-      await navigator.serviceWorker.register("./sw.js");
+      const reg = await navigator.serviceWorker.register("./sw.js?v=4");
+      if (reg.waiting) reg.waiting.postMessage({ type: "SKIP_WAITING" });
     } catch (_) {
       /* optional */
     }
@@ -181,8 +188,10 @@ async function boot() {
 
 async function refreshCacheLabel() {
   const s = await cacheStats();
-  document.getElementById("cache-status").textContent =
-    `Cache: ${s.entries} file(s) · static mode`;
+  const nObj = Object.keys(state.store?.objects || {}).length;
+  const el = document.getElementById("cache-status");
+  el.textContent = `Cache: ${s.entries} file(s) · ${nObj} object labels`;
+  el.style.color = nObj ? "" : "#b8002e";
 }
 
 async function reloadYear() {
@@ -458,7 +467,9 @@ async function loadItems() {
   const started = Date.now();
   try {
     const rows = await state.store.recordsForNode(state.view, node);
-    let matched = rows.filter((r) => state.store.matchesNode(state.view, r, node));
+    let matched = rows
+      .filter((r) => state.store.matchesNode(state.view, r, node))
+      .map((r) => state.store.enrich(r));
     matched = applyFilters(matched);
     state.itemsTotal = matched.length;
     const page = matched.slice(state.itemsOffset, state.itemsOffset + state.itemsLimit);
@@ -477,7 +488,16 @@ function applyFilters(rows) {
   if (state.amountFilter === "zero") out = out.filter((r) => (r.amount || 0) === 0);
   if (state.search) {
     const q = state.search.toLowerCase();
-    out = out.filter((r) => (r.description || "").toLowerCase().includes(q));
+    out = out.filter((r) => {
+      const hay = [
+        r.object_name,
+        r.funding_name,
+        r.program_description,
+        r.description,
+        r.object_uacs_code,
+      ].join(" ").toLowerCase();
+      return hay.includes(q);
+    });
   }
   return out;
 }
@@ -570,8 +590,15 @@ async function searchInShards(paths, label, preFilter) {
         if (r.prexc_level !== 7) continue;
         if (state.amountFilter === "nonzero" && !(r.amount)) continue;
         if (state.amountFilter === "zero" && r.amount) continue;
-        if (!(r.description || "").toLowerCase().includes(q)) continue;
-        matched.push(r);
+        const enriched = state.store.enrich(r);
+        const hay = [
+          enriched.object_name,
+          enriched.funding_name,
+          enriched.program_description,
+          enriched.object_uacs_code,
+        ].join(" ").toLowerCase();
+        if (!hay.includes(q)) continue;
+        matched.push(enriched);
         if (matched.length >= 5000) break;
       }
       if (matched.length >= 5000) break;
@@ -595,26 +622,63 @@ function renderItemsTable(items) {
     content.innerHTML = '<div class="tree-empty">No matching items.</div>';
     return;
   }
+  const tableWrap = document.createElement("div");
   const table = document.createElement("table");
   table.innerHTML = `<thead><tr>
-    <th>ID</th><th>Level</th><th>Description</th><th class="num">Amount</th>
-    <th>Region</th><th>Org</th><th>Object</th>
+    <th>Expense object</th><th class="num">Amount</th>
+    <th>Funding</th><th>Object code</th><th>ID</th>
   </tr></thead><tbody></tbody>`;
   const tbody = table.querySelector("tbody");
-  items.forEach((item) => {
+  items.forEach((raw) => {
+    const item = state.store.enrich(raw);
     const tr = document.createElement("tr");
     if ((item.amount || 0) === 0) tr.className = "zero-amount";
+    tr.style.cursor = "pointer";
+    const prog = escapeHtml(item.program_description || "");
     tr.innerHTML = `
-      <td><code class="item-id">${escapeHtml(item.id || "")}</code></td>
-      <td class="num">${item.prexc_level ?? "—"}</td>
-      <td class="description" title="${escapeHtml(item.description || "")}">${escapeHtml(item.description || "")}</td>
+      <td class="description" title="Program / PAP: ${prog}">${escapeHtml(item.line_label)}</td>
       <td class="num">${formatAmountP((item.amount || 0) * 1000)}</td>
-      <td>${escapeHtml(item.region_code || "—")}</td>
-      <td><code class="item-id">${escapeHtml(item.org_uacs_code || "")}</code></td>
-      <td><code class="item-id">${escapeHtml(item.object_uacs_code || "")}</code></td>`;
+      <td title="${escapeHtml(item.funding_uacs_code || "")}">${escapeHtml(item.funding_name || "—")}</td>
+      <td><code class="item-id">${escapeHtml(item.object_uacs_code || "")}</code></td>
+      <td><code class="item-id">${escapeHtml(item.id || "")}</code></td>`;
+    tr.addEventListener("click", () => showItemDetail(item));
     tbody.appendChild(tr);
   });
-  content.appendChild(table);
+  tableWrap.appendChild(table);
+  content.appendChild(tableWrap);
+}
+
+function showItemDetail(item) {
+  document.querySelectorAll(".item-detail").forEach((el) => el.remove());
+  const detail = document.createElement("div");
+  detail.className = "item-detail";
+  const pathLabel = state.view === "nep" ? "NEP path" : "Place path";
+  const path = state.breadcrumb
+    ? `<dt>${pathLabel}</dt><dd>${escapeHtml(state.breadcrumb)}</dd>`
+    : "";
+  detail.innerHTML = `
+    <dl>
+      <dt>ID</dt><dd><code class="item-id">${escapeHtml(item.id || "")}</code></dd>
+      <dt>Amount</dt><dd>${formatAmountP((item.amount || 0) * 1000)}</dd>
+      <dt>Expense object</dt><dd>${escapeHtml(item.object_name || "—")}
+        <code class="item-id">${escapeHtml(item.object_uacs_code || "")}</code></dd>
+      <dt>Funding source</dt><dd>${escapeHtml(item.funding_name || "—")}
+        <code class="item-id">${escapeHtml(item.funding_uacs_code || "")}</code></dd>
+      <dt>Program / PAP</dt><dd>${escapeHtml(item.program_description || "—")}</dd>
+      <dt>PREXC FPAP ID</dt><dd><code class="item-id">${escapeHtml(String(item.prexc_fpap_id || ""))}</code></dd>
+      <dt>PREXC level</dt><dd>${item.prexc_level ?? "—"}</dd>
+      <dt>Excel source row</dt><dd>${item.excel_row != null ? escapeHtml(String(item.excel_row)) : "—"}
+        <span style="color:var(--muted);font-size:11px"> (data sheet, header = row 1)</span></dd>
+      <dt>Organization</dt><dd>${escapeHtml(item.org_name || "—")}
+        <code class="item-id">${escapeHtml(item.org_uacs_code || "")}</code></dd>
+      <dt>Division</dt><dd>${escapeHtml(item.division_name || "—")}
+        <code class="item-id">${escapeHtml(item.division_code || "")}</code></dd>
+      <dt>Region</dt><dd>${escapeHtml(item.region_name || "—")}
+        <code class="item-id">${escapeHtml(item.region_code || "")}</code></dd>
+      ${path}
+    </dl>`;
+  document.getElementById("items-content").appendChild(detail);
+  detail.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
 boot();

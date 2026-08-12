@@ -1,0 +1,63 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: browser/package-lock.json
+
+      - name: Install & build browser
+        working-directory: browser
+        run: |
+          npm ci
+          npm run build
+
+      - name: Assemble static site
+        run: |
+          mkdir -p site
+          cp -a browser/dist/. site/
+          mkdir -p site/data
+          cp -a data/budget site/data/
+          cp -a data/organization site/data/
+          cp -a data/funding_source site/data/
+          cp -a data/object_code site/data/
+          cp -a data/location site/data/
+          if [ -d data/pap ]; then cp -a data/pap site/data/; fi
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

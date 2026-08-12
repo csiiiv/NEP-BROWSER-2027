@@ -71,12 +71,77 @@ export class YearData {
     this.aaRows = null;
     this.yearIndex = null; // slim rows for whole-year search
     this.deptIndexes = new Map();
+    this.objects = {};
+    this.funding = {};
+    this.orgs = {};
+    this.regions = {};
   }
 
   async init() {
     this.meta = await fetchGzJson(`${this.browserBase}/meta.json.gz`);
     this.manifest = await fetchGzJson(`${this.browserBase}/manifest.json.gz`);
+    await this.loadRefs();
     return this.meta;
+  }
+
+  async loadRefs() {
+    const base = this.repoBase;
+    const urls = {
+      objects: `${base}/data/object_code/sub_objects.json`,
+      funding: `${base}/data/funding_source/funding_sources.json`,
+      orgs: `${base}/data/organization/organizations.json`,
+      regions: `${base}/data/location/regions.json`,
+    };
+    try {
+      const [objs, funds, orgs, regions] = await Promise.all(
+        Object.values(urls).map((u) =>
+          fetch(u, { cache: "no-cache" }).then((r) => {
+            if (!r.ok) throw new Error(`${u} ${r.status}`);
+            return r.json();
+          }),
+        ),
+      );
+      this.objects = Object.fromEntries(
+        (objs || []).map((o) => [String(o.uacs_code), o.description || ""]),
+      );
+      this.funding = Object.fromEntries(
+        (funds || []).map((f) => [String(f.uacs_code), f.description || ""]),
+      );
+      this.orgs = Object.fromEntries(
+        (orgs || []).map((o) => [String(o.uacs_code), o.description || ""]),
+      );
+      this.regions = Object.fromEntries(
+        (regions || []).map((r) => [String(r.code), r.description || ""]),
+      );
+      console.info(
+        `[NEP] Loaded ${Object.keys(this.objects).length} expense objects, `
+        + `${Object.keys(this.funding).length} funding sources`,
+      );
+    } catch (err) {
+      console.error("[NEP] Failed to load reference labels", err);
+      this.objects = {};
+      this.funding = {};
+      this.orgs = {};
+      this.regions = {};
+    }
+  }
+
+  enrich(rec) {
+    const obj = rec.object_uacs_code || "";
+    const fund = rec.funding_uacs_code || "";
+    const org = rec.org_uacs_code || "";
+    const region = rec.region_code || "";
+    const objectName = this.objects[obj] || "";
+    return {
+      ...rec,
+      amount_display_pesos: (rec.amount || 0) * 1000,
+      program_description: rec.description || "",
+      object_name: objectName || (obj ? `Object ${obj}` : "—"),
+      funding_name: this.funding[fund] || fund || "—",
+      org_name: this.orgs[org] || "",
+      region_name: this.regions[region] || region || "—",
+      line_label: objectName || (obj ? `Object ${obj}` : (rec.description || "—")),
+    };
   }
 
   async loadTree(view) {

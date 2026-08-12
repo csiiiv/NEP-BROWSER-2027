@@ -1,17 +1,41 @@
 # NEP Budget Browser
 
-Static UI (GitHub Pages–ready) plus optional FastAPI server.
+Vite + React + **shadcn/ui** (Tailwind) with hash routing
+(`#/2027/nep`, `#/2026/place`, `#/…/n/{nodeKey}`, `#/about`).
+Static assets under `../data` are served in dev/preview via a Vite plugin.
 
-## Static (preferred)
+Budget figures come from the Philippine **Department of Budget and Management
+(DBM)** National Expenditure Program and related **UACS** classifications.
+See the root [`README.md`](../README.md#sources--attribution) and in-app
+`#/about` for full source citations. This UI is a BetterGovPH civic tool—not an
+official government product.
 
-From the **repo root**:
+The previous plain HTML/JS UI lives in `legacy-static/`.
+
+## Develop
 
 ```powershell
-python -m http.server 8080
-# http://localhost:8080/browser/
+cd browser
+npm install
+npm run dev
+# http://localhost:5173/#/2027/nep
 ```
 
-## Optional API
+Prefer `npm run dev` while iterating (HMR). `npm run preview` serves the last
+`dist/` build only—rebuild after UI changes if you use preview.
+
+## Build / preview
+
+```powershell
+cd browser
+npm run build
+npm run preview
+# http://localhost:5173/#/2027/nep
+```
+
+Output: `browser/dist/` (relative `base: './'` for GitHub Pages).
+
+## Optional FastAPI
 
 ```powershell
 cd browser

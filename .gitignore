@@ -16,6 +16,11 @@ __pycache__/
 venv/
 .env
 
+# Browser (Vite)
+browser/node_modules/
+browser/dist/
+browser/vite.gitignore
+
 # OS / editor
 .DS_Store
 Thumbs.db
