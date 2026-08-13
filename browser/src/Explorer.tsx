@@ -88,7 +88,7 @@ const DEFAULT_EXPANDED = ["section:automatic", "section:programmed"] as const;
 const ITEMS_CAP = 5000;
 const ITEM_COLS_STORAGE_KEY = "nep-item-cols-v4";
 
-type TreeSort = "amount" | "name";
+type TreeSort = "amount" | "name" | "yoy";
 type ItemColId =
   | "object"
   | "amount"
@@ -333,10 +333,30 @@ const selectClass = cn(
   "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
 );
 
-function sortTreeChildren(children: TreeNode[], sort: TreeSort): TreeNode[] {
+function treeYoySortKey(
+  node: TreeNode,
+  priorTreeAmounts: Map<string, number> | null,
+): number {
+  if (!priorTreeAmounts) return node.total_amount;
+  const prior = priorTreeAmounts.get(node.key);
+  if (prior === undefined || prior === 0) return Number.NEGATIVE_INFINITY;
+  return ((node.total_amount - prior) / prior) * 100;
+}
+
+function sortTreeChildren(
+  children: TreeNode[],
+  sort: TreeSort,
+  priorTreeAmounts: Map<string, number> | null = null,
+): TreeNode[] {
   const arr = [...children];
   if (sort === "name") {
     arr.sort((a, b) => a.label.localeCompare(b.label, undefined, { sensitivity: "base" }));
+  } else if (sort === "yoy") {
+    arr.sort(
+      (a, b) =>
+        treeYoySortKey(b, priorTreeAmounts) - treeYoySortKey(a, priorTreeAmounts)
+        || b.total_amount - a.total_amount,
+    );
   } else {
     arr.sort((a, b) => b.total_amount - a.total_amount);
   }
@@ -408,6 +428,12 @@ export default function Explorer() {
   const [panelHint, setPanelHint] = useState(
     "Expand the tree, then open a leaf (Program / OU) for line items.",
   );
+
+  useEffect(() => {
+    if (year !== YOY_CURRENT_YEAR && treeSort === "yoy") {
+      setTreeSort("amount");
+    }
+  }, [year, treeSort]);
 
   const appliedNodeRef = useRef<string | null>(null);
   const itemsJobRef = useRef(0);
@@ -1162,6 +1188,9 @@ export default function Explorer() {
               >
                 <option value="amount">By amount</option>
                 <option value="name">By name</option>
+                {year === YOY_CURRENT_YEAR && (
+                  <option value="yoy">By YoY change</option>
+                )}
               </select>
               <Button
                 type="button"
@@ -1187,7 +1216,7 @@ export default function Explorer() {
                 priorTreeAmounts={priorTreeAmounts}
               />
             </div>
-            {sortTreeChildren(rootChildren, treeSort).map((c) => (
+            {sortTreeChildren(rootChildren, treeSort, priorTreeAmounts).map((c) => (
               <TreeRow
                 key={nodeKey(c)}
                 node={c}
@@ -1713,8 +1742,8 @@ function TreeRow({
   const short = displayCode(node);
   const sectionClass = node.kind === "section" ? ` kind-section-${node.code}` : "";
   const children = useMemo(
-    () => sortTreeChildren(node.children || [], treeSort),
-    [node.children, treeSort],
+    () => sortTreeChildren(node.children || [], treeSort, priorTreeAmounts),
+    [node.children, treeSort, priorTreeAmounts],
   );
   const yoyLabel = treeNodeYoyLabel(key, node.total_amount, priorTreeAmounts);
 
