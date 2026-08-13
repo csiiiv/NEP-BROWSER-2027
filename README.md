@@ -30,6 +30,8 @@ always verify against the official documents and sources before citing. Report
 errors or discrepancies via [GitHub Issues](https://github.com/csiiiv/NEP-BROWSER-2027/issues);
 they may be patched in a later release.
 
+Known source/transform quirks (kept for operators): [`docs/EDGE_CASES.md`](docs/EDGE_CASES.md).
+
 ## Layout
 
 ```

@@ -75,15 +75,24 @@ import {
   nodePath,
   type Crumb,
 } from "@/lib/path";
+import {
+  YOY_CURRENT_YEAR,
+  YOY_PRIOR_YEAR,
+  attachYoy,
+  loadPriorAmountIndex,
+  loadPriorTreeAmountIndex,
+  treeNodeYoyLabel,
+} from "@/lib/yoy";
 
 const DEFAULT_EXPANDED = ["section:automatic", "section:programmed"] as const;
 const ITEMS_CAP = 5000;
-const ITEM_COLS_STORAGE_KEY = "nep-item-cols-v3";
+const ITEM_COLS_STORAGE_KEY = "nep-item-cols-v4";
 
 type TreeSort = "amount" | "name";
 type ItemColId =
   | "object"
   | "amount"
+  | "yoy"
   | "funding"
   | "prog"
   | "region"
@@ -111,6 +120,7 @@ const ITEM_COLUMNS: {
 }[] = [
   { id: "object", label: "Expense object", header: "Expense object", defaultOn: true },
   { id: "amount", label: "Amount", header: "Amount", defaultOn: true },
+  { id: "yoy", label: "YoY vs FY2026", header: "YoY", defaultOn: true },
   { id: "prog", label: "Program / PAP", header: "PROG", defaultOn: true },
   { id: "region", label: "Region", header: "REGION", defaultOn: true },
   { id: "div", label: "Division", header: "DIV", defaultOn: true },
@@ -220,6 +230,8 @@ function columnWidthPx(id: ItemColId): number {
   switch (id) {
     case "amount":
       return 112;
+    case "yoy":
+      return 72;
     case "region":
       return 120;
     case "div":
@@ -244,6 +256,8 @@ function cellText(item: EnrichedRec, col: ItemColId): string {
       return item.line_label || "";
     case "amount":
       return formatAmountP((item.amount || 0) * 1000);
+    case "yoy":
+      return item.yoy_label || "—";
     case "funding":
       return item.funding_name || "";
     case "prog":
@@ -266,6 +280,11 @@ function cellText(item: EnrichedRec, col: ItemColId): string {
 
 function sortValue(item: EnrichedRec, key: ItemSortKey): string | number {
   if (key === "amount") return item.amount || 0;
+  if (key === "yoy") {
+    if (item.yoy_pct != null) return item.yoy_pct;
+    if (item.yoy_label === "NEW") return Number.POSITIVE_INFINITY;
+    return Number.NEGATIVE_INFINITY;
+  }
   return cellText(item, key);
 }
 
@@ -385,12 +404,14 @@ export default function Explorer() {
   const [dragColId, setDragColId] = useState<ItemColId | null>(null);
   const [dragOverColId, setDragOverColId] = useState<ItemColId | null>(null);
   const [searchProgress, setSearchProgress] = useState<SearchProgress | null>(null);
+  const [priorTreeAmounts, setPriorTreeAmounts] = useState<Map<string, number> | null>(null);
   const [panelHint, setPanelHint] = useState(
     "Expand the tree, then open a leaf (Program / OU) for line items.",
   );
 
   const appliedNodeRef = useRef<string | null>(null);
   const itemsJobRef = useRef(0);
+  const priorStoreRef = useRef<YearData | null>(null);
   const amountFilterRef = useRef(amountFilter);
   const searchRef = useRef(search);
   amountFilterRef.current = amountFilter;
@@ -415,6 +436,17 @@ export default function Explorer() {
       setItemsSummary("");
       setPanelHint("Search cancelled.");
     }
+  }
+
+  async function priorAmountIndexFor(
+    s: YearData,
+    paths: string[],
+  ): Promise<Map<string, number> | null> {
+    if (s.year !== YOY_CURRENT_YEAR) return null;
+    if (!priorStoreRef.current || priorStoreRef.current.repoBase !== s.repoBase) {
+      priorStoreRef.current = new YearData(YOY_PRIOR_YEAR, s.repoBase);
+    }
+    return loadPriorAmountIndex(priorStoreRef.current, paths);
   }
 
   const refreshCache = useCallback(async (s: YearData | null) => {
@@ -461,6 +493,7 @@ export default function Explorer() {
       setTrail([]);
       setExpanded(new Set(DEFAULT_EXPANDED));
       setDetail(null);
+      setPriorTreeAmounts(null);
       appliedNodeRef.current = null;
       beginItemsJob(); // cancel any in-flight search / leaf load
       try {
@@ -471,6 +504,18 @@ export default function Explorer() {
         setStore(s);
         await buildRoot(s, view, year);
         await refreshCache(s);
+        if (year === YOY_CURRENT_YEAR) {
+          if (!priorStoreRef.current || priorStoreRef.current.repoBase !== base) {
+            priorStoreRef.current = new YearData(YOY_PRIOR_YEAR, base);
+          }
+          try {
+            const priorMap = await loadPriorTreeAmountIndex(priorStoreRef.current, view);
+            if (!cancelled) setPriorTreeAmounts(priorMap);
+          } catch (err) {
+            console.warn("[NEP] Prior-year tree YoY unavailable", err);
+            if (!cancelled) setPriorTreeAmounts(null);
+          }
+        }
         if (!nodeKeyParam) {
           setItemsMode("empty");
           setPanelHint("Expand the tree, then open a leaf (Program / OU) for line items.");
@@ -559,12 +604,17 @@ export default function Explorer() {
     setSearchProgress(null);
     const started = Date.now();
     try {
-      const rows = await s.recordsForNode(v, node);
+      const paths = shardPathsForNode(s, v, node);
+      const [rows, priorByKey] = await Promise.all([
+        s.recordsForNode(v, node),
+        priorAmountIndexFor(s, paths),
+      ]);
       if (!isCurrentItemsJob(job)) return;
       let matched = rows
         .filter((r) => s.matchesNode(v, r, node))
         .map((r) => s.enrich(r));
       matched = applyFilters(matched, amountFilterRef.current, searchRef.current);
+      matched = attachYoy(matched, priorByKey);
       if (!isCurrentItemsJob(job)) return;
       const capped = matched.length > ITEMS_CAP;
       const rowsOut = capped ? matched.slice(0, ITEMS_CAP) : matched;
@@ -767,6 +817,8 @@ export default function Explorer() {
     const matched: EnrichedRec[] = [];
     const amt = amountFilterRef.current;
     try {
+      const priorByKey = await priorAmountIndexFor(store, paths);
+      if (!isCurrentItemsJob(job)) return;
       let loaded = 0;
       for (const p of paths) {
         if (!isCurrentItemsJob(job)) return;
@@ -799,11 +851,12 @@ export default function Explorer() {
         if (matched.length >= ITEMS_CAP) break;
       }
       if (!isCurrentItemsJob(job)) return;
-      const amountThousands = sumAmountsThousands(matched);
-      setItems(matched);
+      const withYoy = attachYoy(matched, priorByKey);
+      const amountThousands = sumAmountsThousands(withYoy);
+      setItems(withYoy);
       setItemsSummary(
-        `${formatHitsSummary(matched.length, amountThousands)} in ${label}`
-          + (matched.length >= ITEMS_CAP ? ` (capped at ${formatNum(ITEMS_CAP)})` : "")
+        `${formatHitsSummary(withYoy.length, amountThousands)} in ${label}`
+          + (withYoy.length >= ITEMS_CAP ? ` (capped at ${formatNum(ITEMS_CAP)})` : "")
           + ` · ${((Date.now() - started) / 1000).toFixed(1)}s · ${loaded}/${paths.length} shards`,
       );
       setItemsMode("table");
@@ -830,9 +883,10 @@ export default function Explorer() {
     () =>
       colOrder
         .filter((id) => visibleCols.has(id))
+        .filter((id) => id !== "yoy" || year === YOY_CURRENT_YEAR)
         .map((id) => ITEM_COL_BY_ID[id])
         .filter(Boolean),
-    [colOrder, visibleCols],
+    [colOrder, visibleCols, year],
   );
 
   const tableWidthPx = useMemo(
@@ -841,8 +895,12 @@ export default function Explorer() {
   );
 
   const orderedColumns = useMemo(
-    () => colOrder.map((id) => ITEM_COL_BY_ID[id]).filter(Boolean),
-    [colOrder],
+    () =>
+      colOrder
+        .filter((id) => id !== "yoy" || year === YOY_CURRENT_YEAR)
+        .map((id) => ITEM_COL_BY_ID[id])
+        .filter(Boolean),
+    [colOrder, year],
   );
 
   const detailTrail = useMemo(() => {
@@ -1126,6 +1184,7 @@ export default function Explorer() {
                 onSelect={onSelect}
                 showChildren={false}
                 treeSort={treeSort}
+                priorTreeAmounts={priorTreeAmounts}
               />
             </div>
             {sortTreeChildren(rootChildren, treeSort).map((c) => (
@@ -1138,6 +1197,7 @@ export default function Explorer() {
                 onSelect={onSelect}
                 showChildren
                 treeSort={treeSort}
+                priorTreeAmounts={priorTreeAmounts}
               />
             ))}
           </div>
@@ -1360,7 +1420,12 @@ export default function Explorer() {
                         <SortableHead
                           key={col.id}
                           label={col.header}
-                          align={col.id === "amount" ? "right" : undefined}
+                          title={
+                            col.id === "yoy"
+                              ? "Percent change vs FY2026 (UACS match). NEW if unmatched."
+                              : undefined
+                          }
+                          align={col.id === "amount" || col.id === "yoy" ? "right" : undefined}
                           active={itemSortKey === col.id}
                           dir={itemSortDir}
                           onClick={() => toggleItemSort(col.id)}
@@ -1382,6 +1447,7 @@ export default function Explorer() {
                         {activeColumns.map((col) => {
                           const text = cellText(item, col.id) || "—";
                           const isAmount = col.id === "amount";
+                          const isYoy = col.id === "yoy";
                           const isCode = col.id === "object_code" || col.id === "id";
                           const isMultiline =
                             col.id === "object"
@@ -1396,9 +1462,19 @@ export default function Explorer() {
                               className={cn(
                                 "align-top",
                                 isAmount && "text-right tabular-nums whitespace-nowrap",
+                                isYoy && "text-right tabular-nums whitespace-nowrap text-[12px]",
+                                isYoy && text === "NEW" && "font-medium text-foreground",
+                                isYoy && text.startsWith("+") && "text-emerald-700 dark:text-emerald-400",
+                                isYoy && text.startsWith("-") && "text-rose-700 dark:text-rose-400",
                                 isCode && "font-mono text-[11px] whitespace-nowrap text-muted-foreground",
                               )}
-                              title={text}
+                              title={
+                                isYoy
+                                  ? text === "NEW"
+                                    ? "No matching FY2026 line (UACS key)"
+                                    : "vs FY2026"
+                                  : text
+                              }
                             >
                               {isMultiline ? (
                                 <div className="line-clamp-2 w-full break-words whitespace-normal leading-snug [overflow-wrap:anywhere]">
@@ -1551,6 +1627,7 @@ export default function Explorer() {
 
 function SortableHead({
   label,
+  title,
   active,
   dir,
   onClick,
@@ -1558,6 +1635,7 @@ function SortableHead({
   className,
 }: {
   label: string;
+  title?: string;
   active: boolean;
   dir: SortDir;
   onClick: () => void;
@@ -1569,6 +1647,7 @@ function SortableHead({
     <TableHead className={cn(align === "right" ? "text-right" : undefined, className)}>
       <button
         type="button"
+        title={title}
         className={cn(
           "inline-flex items-center gap-1 font-medium hover:text-foreground",
           align === "right" && "flex-row-reverse",
@@ -1617,6 +1696,7 @@ function TreeRow({
   onSelect,
   showChildren,
   treeSort,
+  priorTreeAmounts,
 }: {
   node: TreeNode;
   selectedKey: string | null;
@@ -1625,6 +1705,7 @@ function TreeRow({
   onSelect: (n: TreeNode) => void;
   showChildren: boolean;
   treeSort: TreeSort;
+  priorTreeAmounts: Map<string, number> | null;
 }) {
   const key = nodeKey(node);
   const open = expanded.has(key);
@@ -1635,6 +1716,7 @@ function TreeRow({
     () => sortTreeChildren(node.children || [], treeSort),
     [node.children, treeSort],
   );
+  const yoyLabel = treeNodeYoyLabel(key, node.total_amount, priorTreeAmounts);
 
   return (
     <div className="tree-node" data-key={key}>
@@ -1673,6 +1755,26 @@ function TreeRow({
         </span>
         <span className="stats">
           <span className="amount">{formatAmountT(node.amount_display_trillions)}</span>
+          {yoyLabel && (
+            <span
+              className={cn(
+                "ml-1.5 text-[10px] font-medium tabular-nums",
+                yoyLabel === "NEW" && "text-foreground/80",
+                yoyLabel === "—" && "text-muted-foreground",
+                yoyLabel.startsWith("+") && "text-emerald-700 dark:text-emerald-400",
+                yoyLabel.startsWith("-") && "text-rose-700 dark:text-rose-400",
+              )}
+              title={
+                yoyLabel === "NEW"
+                  ? "No matching FY2026 node"
+                  : yoyLabel === "—"
+                    ? "Prior amount was zero"
+                    : "vs FY2026"
+              }
+            >
+              {yoyLabel}
+            </span>
+          )}
           {node.item_count != null && (
             <span className="count"> · {formatNum(node.item_count)}</span>
           )}
@@ -1691,6 +1793,7 @@ function TreeRow({
                 onSelect={onSelect}
                 showChildren
                 treeSort={treeSort}
+                priorTreeAmounts={priorTreeAmounts}
               />
             ))}
         </div>

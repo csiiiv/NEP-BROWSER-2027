@@ -79,6 +79,23 @@ export function ItemDetailModal({
             )}
           >
             {formatAmountP(amount)}
+            {detail.yoy_label && detail.yoy_label !== "—" && (
+              <span
+                className={cn(
+                  "ml-3 text-base font-semibold tabular-nums",
+                  detail.yoy_label === "NEW" && "text-chrome-muted",
+                  detail.yoy_label.startsWith("+") && "text-emerald-300",
+                  detail.yoy_label.startsWith("-") && "text-rose-300",
+                )}
+                title={
+                  detail.yoy_label === "NEW"
+                    ? "No matching FY2026 line (UACS key)"
+                    : "Percent change vs FY2026"
+                }
+              >
+                {detail.yoy_label}
+              </span>
+            )}
           </DialogDescription>
         </DialogHeader>
 

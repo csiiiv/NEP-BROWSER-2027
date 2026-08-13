@@ -43,6 +43,9 @@ export interface EnrichedRec extends BudgetRec {
   org_name: string;
   region_name: string;
   line_label: string;
+  /** FY2027 vs FY2026 when computed; "NEW" if unmatched. */
+  yoy_label?: string;
+  yoy_pct?: number | null;
 }
 
 export interface TreeNode {

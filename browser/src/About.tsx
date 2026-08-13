@@ -160,6 +160,11 @@ export default function About() {
                   for detail; the path chips navigate the hierarchy.
                 </li>
                 <li>Amounts are shown in pesos (source values are thousands × 1,000).</li>
+                <li>
+                  For <strong>FY2027</strong>, hierarchy nodes and the item <strong>YoY</strong>{" "}
+                  column compare to FY2026 when codes/keys match. Unmatched nodes or lines are
+                  marked <strong>NEW</strong>.
+                </li>
               </ul>
             </section>
 
