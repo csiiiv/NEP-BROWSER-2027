@@ -31,6 +31,7 @@ errors or discrepancies via [GitHub Issues](https://github.com/csiiiv/NEP-BROWSE
 they may be patched in a later release.
 
 Known source/transform quirks (kept for operators): [`docs/EDGE_CASES.md`](docs/EDGE_CASES.md).
+Comparison with upstream open-budget JSON: [`docs/OPEN_BUDGET_COMPARE.md`](docs/OPEN_BUDGET_COMPARE.md).
 
 ## Layout
 

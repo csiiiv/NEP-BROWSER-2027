@@ -1,3 +1,6 @@
+# Local comparison scrapes (e.g. open-budget-data mirrors)
+_compare/
+
 # Sources & intermediates (regenerate locally)
 *.xlsx
 *.xls
