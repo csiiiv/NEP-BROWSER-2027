@@ -333,32 +333,38 @@ const selectClass = cn(
   "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
 );
 
-function treeYoySortKey(
+function treeYoySortParts(
   node: TreeNode,
   priorTreeAmounts: Map<string, number> | null,
-): number {
-  if (!priorTreeAmounts) return node.total_amount;
+): { matched: boolean; pct: number } {
+  if (!priorTreeAmounts) return { matched: true, pct: node.total_amount };
   const prior = priorTreeAmounts.get(node.key);
-  if (prior === undefined || prior === 0) return Number.NEGATIVE_INFINITY;
-  return ((node.total_amount - prior) / prior) * 100;
+  if (prior === undefined || prior === 0) return { matched: false, pct: 0 };
+  return { matched: true, pct: ((node.total_amount - prior) / prior) * 100 };
 }
 
 function sortTreeChildren(
   children: TreeNode[],
   sort: TreeSort,
   priorTreeAmounts: Map<string, number> | null = null,
+  dir: SortDir = "desc",
 ): TreeNode[] {
   const arr = [...children];
+  const mul = dir === "asc" ? 1 : -1;
   if (sort === "name") {
-    arr.sort((a, b) => a.label.localeCompare(b.label, undefined, { sensitivity: "base" }));
-  } else if (sort === "yoy") {
     arr.sort(
       (a, b) =>
-        treeYoySortKey(b, priorTreeAmounts) - treeYoySortKey(a, priorTreeAmounts)
-        || b.total_amount - a.total_amount,
+        a.label.localeCompare(b.label, undefined, { sensitivity: "base" }) * mul,
     );
+  } else if (sort === "yoy") {
+    arr.sort((a, b) => {
+      const A = treeYoySortParts(a, priorTreeAmounts);
+      const B = treeYoySortParts(b, priorTreeAmounts);
+      if (A.matched !== B.matched) return A.matched ? -1 : 1; // NEW always last
+      return (A.pct - B.pct) * mul || (a.total_amount - b.total_amount) * mul;
+    });
   } else {
-    arr.sort((a, b) => b.total_amount - a.total_amount);
+    arr.sort((a, b) => (a.total_amount - b.total_amount) * mul);
   }
   return arr;
 }
@@ -414,6 +420,7 @@ export default function Explorer() {
   const [itemsMode, setItemsMode] = useState<"empty" | "branch" | "loading" | "table">("empty");
   const [detail, setDetail] = useState<EnrichedRec | null>(null);
   const [treeSort, setTreeSort] = useState<TreeSort>("amount");
+  const [treeSortDir, setTreeSortDir] = useState<SortDir>("desc");
   const [itemSortKey, setItemSortKey] = useState<ItemSortKey>("amount");
   const [itemSortDir, setItemSortDir] = useState<SortDir>("desc");
   const [visibleCols, setVisibleCols] = useState<Set<ItemColId>>(() => {
@@ -1196,6 +1203,22 @@ export default function Explorer() {
                 type="button"
                 variant="outline"
                 size="sm"
+                className="h-7 gap-1 px-2 text-xs"
+                onClick={() => setTreeSortDir((d) => (d === "asc" ? "desc" : "asc"))}
+                title={treeSortDir === "asc" ? "Ascending — click for descending" : "Descending — click for ascending"}
+                aria-label={treeSortDir === "asc" ? "Sort ascending" : "Sort descending"}
+              >
+                {treeSortDir === "asc" ? (
+                  <ArrowUp className="size-3.5" aria-hidden />
+                ) : (
+                  <ArrowDown className="size-3.5" aria-hidden />
+                )}
+                <span className="hidden sm:inline">{treeSortDir === "asc" ? "Asc" : "Desc"}</span>
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
                 className="h-7 text-xs"
                 onClick={() => setExpanded(new Set(DEFAULT_EXPANDED))}
               >
@@ -1213,10 +1236,11 @@ export default function Explorer() {
                 onSelect={onSelect}
                 showChildren={false}
                 treeSort={treeSort}
+                treeSortDir={treeSortDir}
                 priorTreeAmounts={priorTreeAmounts}
               />
             </div>
-            {sortTreeChildren(rootChildren, treeSort, priorTreeAmounts).map((c) => (
+            {sortTreeChildren(rootChildren, treeSort, priorTreeAmounts, treeSortDir).map((c) => (
               <TreeRow
                 key={nodeKey(c)}
                 node={c}
@@ -1226,6 +1250,7 @@ export default function Explorer() {
                 onSelect={onSelect}
                 showChildren
                 treeSort={treeSort}
+                treeSortDir={treeSortDir}
                 priorTreeAmounts={priorTreeAmounts}
               />
             ))}
@@ -1725,6 +1750,7 @@ function TreeRow({
   onSelect,
   showChildren,
   treeSort,
+  treeSortDir,
   priorTreeAmounts,
 }: {
   node: TreeNode;
@@ -1734,6 +1760,7 @@ function TreeRow({
   onSelect: (n: TreeNode) => void;
   showChildren: boolean;
   treeSort: TreeSort;
+  treeSortDir: SortDir;
   priorTreeAmounts: Map<string, number> | null;
 }) {
   const key = nodeKey(node);
@@ -1742,8 +1769,8 @@ function TreeRow({
   const short = displayCode(node);
   const sectionClass = node.kind === "section" ? ` kind-section-${node.code}` : "";
   const children = useMemo(
-    () => sortTreeChildren(node.children || [], treeSort, priorTreeAmounts),
-    [node.children, treeSort, priorTreeAmounts],
+    () => sortTreeChildren(node.children || [], treeSort, priorTreeAmounts, treeSortDir),
+    [node.children, treeSort, treeSortDir, priorTreeAmounts],
   );
   const yoyLabel = treeNodeYoyLabel(key, node.total_amount, priorTreeAmounts);
 
@@ -1822,6 +1849,7 @@ function TreeRow({
                 onSelect={onSelect}
                 showChildren
                 treeSort={treeSort}
+                treeSortDir={treeSortDir}
                 priorTreeAmounts={priorTreeAmounts}
               />
             ))}
